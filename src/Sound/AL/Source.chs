@@ -10,6 +10,8 @@
 
 module Sound.AL.Source where
 
+import Foreign.C.Types
+import Foreign.Ptr ( Ptr )
 import Sound.AL.Types
 
 #include <al.h>
@@ -20,7 +22,7 @@ foreign import CALLCV "alIsSource" alIsSource :: ALuint -> IO ALboolean
 foreign import CALLCV "alSourcef" alSourcef :: ALuint -> ALenum -> ALfloat -> IO ()
 foreign import CALLCV "alSourcefv" alSourcefv :: ALuint -> ALenum -> Ptr ALfloat -> IO ()
 foreign import CALLCV "alSource3f" alSource3f :: ALuint -> ALenum -> ALfloat -> ALfloat -> ALfloat -> IO ()
-foreign import CALLCV "alSourcei" alSourcei :: ALuit -> ALenum -> ALint -> IO ()
+foreign import CALLCV "alSourcei" alSourcei :: ALuint -> ALenum -> ALint -> IO ()
 foreign import CALLCV "alGetSourcef" alGetSourcef :: ALuint -> ALenum -> Ptr ALfloat -> IO ()
 foreign import CALLCV "alGetSourcefv" alGetSourcefv :: ALuint -> ALenum -> Ptr ALfloat -> IO ()
 foreign import CALLCV "alGetSourcei" alGetSourcei :: ALuint -> ALenum -> Ptr ALint -> IO ()

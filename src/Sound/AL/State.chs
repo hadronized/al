@@ -10,6 +10,8 @@
 
 module Sound.AL.State where
 
+import Foreign.C.Types
+import Foreign.Ptr ( Ptr )
 import Sound.AL.Types
 
 #include <al.h>

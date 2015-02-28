@@ -12,6 +12,8 @@ module Sound.ALC.Defines where
 
 import Sound.ALC.Types
 
+#include <alc.h>
+
 alc_DEFAULT_DEVICE_SPECIFIER :: ALCenum
 alc_DEFAULT_DEVICE_SPECIFIER = {#const ALC_DEFAULT_DEVICE_SPECIFIER #}
 
@@ -19,7 +21,7 @@ alc_ALL_ATTRIBUTES :: ALCenum
 alc_ALL_ATTRIBUTES = {#const ALC_ALL_ATTRIBUTES #}
 
 alc_ATTRIBUTES_SIZE :: ALCenum
-alc_ATTRIBUTES_SIZE = {#const ALC_ATTRIBUTES_SIZE $}
+alc_ATTRIBUTES_SIZE = {#const ALC_ATTRIBUTES_SIZE #}
 
 alc_DEVICE_SPECIFIER :: ALCenum
 alc_DEVICE_SPECIFIER = {#const ALC_DEVICE_SPECIFIER #}

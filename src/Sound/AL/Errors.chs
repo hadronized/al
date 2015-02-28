@@ -10,6 +10,7 @@
 
 module Sound.AL.Errors where
 
+import Foreign.C.Types
 import Sound.AL.Types
 
 #include <al.h>

@@ -16,7 +16,15 @@ cabal-version:       >= 1.10
 library
   ghc-options:         -W -Wall -O2
 
-  build-tools:         c2hs
+  if os(windows)
+    if arch(i386)
+      cpp-options:     -DCALLCV=stdcall
+    else
+      cpp-options:     -DCALLCV=ccall
+  else
+    cpp-options:       -DCALLCV=ccall
+
+  build-tools:         c2hs >= 0.23 && < 0.24
 
   exposed-modules:     Sound.AL
                      , Sound.AL.Buffer

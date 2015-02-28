@@ -10,7 +10,7 @@
 
 module Sound.ALC.Errors where
 
-import Sound.AL.Types
+import Foreign.C.Types
 import Sound.ALC.Types
 
 foreign import CALLCV "alcGetError" alcGetError :: IO ALCenum

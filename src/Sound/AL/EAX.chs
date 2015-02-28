@@ -9,10 +9,5 @@
 ----------------------------------------------------------------------------
 
 module Sound.AL.EAX
-    {-# WARNING "EAXGet is not implemented yet! #-}
-    {-# WARNING "EAXSet is not implemented yet! #-}
+    {-# WARNING "EAX{G,S}et not implemented yet!" #-}
   where
-
-import Sound.AL.Types
-
-#include <al.h>

@@ -10,6 +10,8 @@
 
 module Sound.ALC.Extensions where
 
+import Foreign.C.Types
+import Foreign.Ptr ( Ptr )
 import Sound.AL.Types
 import Sound.ALC.Types
 

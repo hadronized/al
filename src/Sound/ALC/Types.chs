@@ -10,9 +10,9 @@
 
 module Sound.ALC.Types where
 
-import Sound.AL.Types
+import Foreign.C.Types
 
 #include <alc.h>
 
-type ALCdevice = {#type ALCdevice #}
+data ALCdevice = ALCdevice
 type ALCenum = {#type ALCenum #}
