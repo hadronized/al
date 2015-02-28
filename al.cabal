@@ -8,13 +8,31 @@ copyright:           Dimitri Sabadie
 
 category:            Sound
 build-type:          Simple
+build-tools:         c2hs
 
 -- extra-source-files:
 
 cabal-version:       >= 1.10
 
 library
-  exposed-modules:     Sound.AL.Types, Sound.AL.Errors
+  exposed-modules:     Sound.AL
+                     , Sound.AL.Buffers
+                     , Sound.AL.Defines
+                     , Sound.AL.EAX
+                     , Sound.AL.Errors
+                     , Sound.AL.Extensions
+                     , Sound.AL.Listener
+                     , Sound.AL.Source
+                     , Sound.AL.State
+                     , Sound.AL.Types
+                     , Sound.ALC
+                     , Sound.ALC.Context
+                     , Sound.ALC.Defines
+                     , Sound.ALC.Device
+                     , Sound.ALC.Errors
+                     , Sound.ALC.Extensions
+                     , Sound.ALC.State
+                     , Sound.ALC.Types
 
   default-extensions:  CPP
                      , ForeignFunctionInterface
