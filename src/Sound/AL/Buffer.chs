@@ -13,7 +13,6 @@ module Sound.AL.Buffer where
 import Sound.AL.Types
 
 #include <al.h>
-#include <alc.h>
 
 foreign import CALLCV "alGenBuffers" alGenBuffers :: ALsizei -> Ptr ALuint -> IO ()
 foreign import CALLCV "alDeleteBuffers" alDeleteBuffers :: ALsizei -> Ptr ALuint -> IO ()

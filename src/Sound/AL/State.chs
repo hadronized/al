@@ -13,7 +13,6 @@ module Sound.AL.State where
 import Sound.AL.Types
 
 #include <al.h>
-#include <alc.h>
 
 foreign import CALLCV "alEnable" alEnable :: ALenum -> IO ()
 foreign import CALLCV "alDisable" alDisable :: ALenum -> IO ()

@@ -13,7 +13,6 @@ module Sound.AL.Listener where
 import Sound.AL.Types
 
 #include <al.h>
-#include <alc.h>
 
 foreign import CALLCV "alListenerf" alListenerf :: ALenum -> ALfloat -> IO ()
 foreign import CALLCV "alListener3f" alListener3f :: ALenum -> ALfloat -> ALfloat -> ALfloat -> IO ()

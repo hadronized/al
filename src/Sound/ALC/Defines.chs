@@ -8,11 +8,15 @@
 -- Portability : portable
 ----------------------------------------------------------------------------
 
-module Sound.AL.EAX
-    {-# WARNING "EAXGet is not implemented yet! #-}
-    {-# WARNING "EAXSet is not implemented yet! #-}
-  where
+module Sound.ALC.Defines where
 
-import Sound.AL.Types
+import Sound.ALC.Types
 
-#include <al.h>
+alc_FREQUENCY :: ALCenum
+alc_FREQUENCY = {#const ALC_FREQUENCY #}
+
+alc_REFRESH :: ALCenum
+alc_REFRESH = {#const ALC_REFRESH #}
+
+alc_SYNC :: ALCenum
+alc_SYNC = {#const ALC_SYNC #}

@@ -13,7 +13,6 @@ module Sound.AL.Source where
 import Sound.AL.Types
 
 #include <al.h>
-#include <alc.h>
 
 foreign import CALLCV "alGenSources" alGenSources :: ALsizei -> Ptr ALuint -> IO ()
 foreign import CALLCV "alDeleteSources" alDeleteSources :: ALsizei -> Ptr ALuint -> IO ()

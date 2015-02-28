@@ -8,11 +8,6 @@
 -- Portability : portable
 ----------------------------------------------------------------------------
 
-module Sound.AL.EAX
-    {-# WARNING "EAXGet is not implemented yet! #-}
-    {-# WARNING "EAXSet is not implemented yet! #-}
-  where
+module Sound.ALC.Context where
 
-import Sound.AL.Types
-
-#include <al.h>
+import Sound.ALC.Types

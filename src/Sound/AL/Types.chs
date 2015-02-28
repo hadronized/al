@@ -11,9 +11,6 @@
 module Sound.AL.Types where
 
 #include <al.h>
-#include <alc.h>
-
-import Foreign.C.Types
 
 type ALboolean = {#type ALboolean #}
 type ALchar = {#type ALchar #}

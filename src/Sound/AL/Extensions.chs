@@ -13,7 +13,6 @@ module Sound.AL.Extensions where
 import Sound.AL.Types
 
 #include <al.h>
-#include <alc.h>
 
 foreign import CALLCV "alIsExtensionPresent" alIsExtensionPresent :: Ptr ALubyte -> IO ALboolean
 foreign import CALLCV "alGetProcAddress" alGetProcAddress :: Ptr ALubyte -> IO (Ptr ()) -- TODO: not sure about Ptr (); should this be FunPtr?

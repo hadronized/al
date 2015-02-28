@@ -13,6 +13,5 @@ module Sound.AL.Errors where
 import Sound.AL.Types
 
 #include <al.h>
-#include <alc.h>
 
 foreign import CALLCV "alGetError" alGetError :: IO ALenum
