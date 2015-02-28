@@ -1,5 +1,5 @@
 name:                al
-version:             0.1.0.0
+version:             0.1.0.1
 synopsis:            OpenAL 1.1 raw API.
 description:         __OpenAL__ is a minimalistic sound API that aims to provide
                      bare features for /spacialized audio/. The API looks like
@@ -23,6 +23,8 @@ license-file:        LICENSE
 author:              Dimitri Sabadie <dimitri.sabadie@gmail.com>
 maintainer:          Dimitri Sabadie <dimitri.sabadie@gmail.com>
 copyright:           Dimitri Sabadie
+homepage:            http://github.com/phaazon/al
+bug-reports:         http://github.com/phaazon/al/issues
 
 category:            Sound
 build-type:          Simple
@@ -31,6 +33,10 @@ stability:           experimental
 extra-source-files:  CHANGELOG.md
 
 cabal-version:       >= 1.10
+
+source-repository head
+  type:     git
+  location: git://github.com/phaazon/al.git
 
 library
   ghc-options:         -W -Wall -O2
