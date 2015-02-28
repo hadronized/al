@@ -39,8 +39,20 @@ al_CONE_OUTER_GAIN = {#const AL_CONE_OUTER_GAIN #}
 al_DATA :: ALenum
 al_DATA = {#const AL_DATA #}
 
+al_DISTANCE_MODEL :: ALenum
+al_DISTANCE_MODEL = {#const AL_DISTANCE_MODE #}
+
+al_DOPPLER_FACTOR :: ALenum
+al_DOPPLER_FACTOR = {#const AL_DOPPLER_FACTOR #}
+
+al_DOPPLER_VELOCITY :: ALenum
+al_DOPPLER_VELOCITY = {#const AL_DOPPLER_VELOCITY #}
+
 al_DIRECTION :: ALenum
 al_DIRECTION = {#const AL_DIRECTION #}
+
+al_EXTENSIONS :: ALenum
+al_EXTENSIONS = {#const AL_EXTENSIOS #}
 
 al_FALSE :: ALenum
 al_TRUE = {#const AL_TRUE #}
@@ -63,6 +75,9 @@ al_FREQUENCY = {#const AL_FREQUENCY #}
 al_GAIN :: ALenum
 al_GAIN = {#const AL_GAIN #}
 
+al_INITIAL :: ALenum
+al_INITIAL = {#const AL_INITIAL #}
+
 al_INVALID_ENUM :: ALenum
 al_INVALID_ENUM = {#const AL_INVALID_ENUM #}
 
@@ -72,11 +87,14 @@ al_INVALID_NAME = {#const AL_INVALID_NAME #}
 al_INVALID_OPERATION :: ALenum
 al_INVALID_OPERATION = {#const AL_INVALID_OPERATION #}
 
-al_INITIAL :: ALenum
-al_INITIAL = {#const AL_INITIAL #}
-
 al_INVALID_VALUE :: ALenum
 al_INVALID_VALUE = {#const AL_INVALID_VALUE #}
+
+al_INVERSE_DISTANCE :: ALenum
+al_INVERSE_DISTANCE = {#const AL_INVERSE_DISTANCE #}
+
+al_INVERSE_DISTANCE_CLAMPED :: ALenum
+al_INVERSE_DISTANCE_CLAMPED = {#const AL_INVERSE_DISTANCE_CLAMPED #}
 
 al_LOOPING :: ALenum
 al_LOOPING = {#const AL_LOOPING #}
@@ -89,6 +107,9 @@ al_MAX_GAIN = {#const AL_MAX_GAIN #}
 
 al_MIN_GAIN :: ALenum
 al_MIN_GAIN = {#const AL_MIN_GAIN #}
+
+al_NONE :: ALenum
+al_NONE = {#const AL_NONE #}
 
 al_NO_ERROR :: ALenum
 al_NO_ERROR = {#const AL_NO_ERROR #}
@@ -114,6 +135,9 @@ al_POSITION = {#const AL_POSITION #}
 al_REFERENCE_DISTANCE :: ALenum
 al_REFERENCE_DISTANCE = {#const AL_REFERENCE_DISTANCE #}
 
+al_RENDERER :: ALenum
+al_RENDERER = {#const AL_RENDERER #}
+
 al_ROLOFF_FACTOR :: Alenum
 al_ROLOFF_FACTOR = {#const AL_ROLOFF_FACTOR #}
 
@@ -131,3 +155,9 @@ al_STOPPED = {#const AL_STOPPED #}
 
 al_VELOCITY :: ALenum
 al_VELOCITY = {#const AL_VELOCITY #}
+
+al_VENDOR :: ALenum
+al_VENDOR = {#const AL_VENDOR #}
+
+al_VERSION :: ALenum
+al_VERSION = {#const AL_VERSION #}
