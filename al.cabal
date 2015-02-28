@@ -8,15 +8,18 @@ copyright:           Dimitri Sabadie
 
 category:            Sound
 build-type:          Simple
-build-tools:         c2hs
 
--- extra-source-files:
+extra-source-files:  CHANGELOG.md
 
 cabal-version:       >= 1.10
 
 library
+  ghc-options:         -W -Wall -O2
+
+  build-tools:         c2hs
+
   exposed-modules:     Sound.AL
-                     , Sound.AL.Buffers
+                     , Sound.AL.Buffer
                      , Sound.AL.Defines
                      , Sound.AL.EAX
                      , Sound.AL.Errors
