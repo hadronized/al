@@ -15,5 +15,5 @@ import Sound.AL.Types
 #include <al.h>
 
 foreign import CALLCV "alIsExtensionPresent" alIsExtensionPresent :: Ptr ALubyte -> IO ALboolean
-foreign import CALLCV "alGetProcAddress" alGetProcAddress :: Ptr ALubyte -> IO (Ptr ()) -- TODO: not sure about Ptr (); should this be FunPtr?
+foreign import CALLCV "alGetProcAddress" alGetProcAddress :: Ptr ALubyte -> IO (Ptr ALvoid)
 foreign import CALLCV "alGetEnumValue" alGetEnumValue :: Ptr ALubyte -> IO ALenum
