@@ -42,6 +42,9 @@ library
   ghc-options:         -W -Wall -O2
 
   if os(windows)
+    extra-lib-dirs:    "C:\\Program Files (x86)\\OpenAL 1.1 SDK\\libs"
+    include-dirs:      "C:\\Program Files (x86)\\OpenAL 1.1 SDK\\include"
+
     if arch(i386)
       cpp-options:     -DCALLCV=stdcall
     else
