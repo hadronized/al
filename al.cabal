@@ -1,5 +1,5 @@
 name:                al
-version:             0.1.0.3
+version:             0.1.1
 synopsis:            OpenAL 1.1 raw API.
 description:         __OpenAL__ is a minimalistic sound API that aims to provide
                      bare features for /spacialized audio/. The API looks like
@@ -38,19 +38,29 @@ source-repository head
   type:     git
   location: git://github.com/phaazon/al.git
 
+flag stdcall {
+  description: Use the @stdcall@ call convention
+  default: False
+}
+
 library
   ghc-options:         -W -Wall -O2
 
-  if os(windows)
-    extra-lib-dirs:    "C:\\Program Files (x86)\\OpenAL 1.1 SDK\\libs"
-    include-dirs:      "C:\\Program Files (x86)\\OpenAL 1.1 SDK\\include"
-
-    if arch(i386)
-      cpp-options:     -DCALLCV=stdcall
-    else
-      cpp-options:     -DCALLCV=ccall
+  if flag(stdcall)
+    cpp-options:       -DCALLCV=stdcall
   else
     cpp-options:       -DCALLCV=ccall
+
+  if os(windows)
+    include-dirs:      "C:\\Program Files (x86)\\OpenAL 1.1 SDK\\include"
+    extra-libraries:   OpenAL32
+
+    if arch(i386)
+      extra-lib-dirs:  "C:\\Program Files (x86)\\OpenAL 1.1 SDK\\libs\\Win32"
+    else
+      extra-lib-dirs:  "C:\\Program Files (x86)\\OpenAL 1.1 SDK\\libs\\Win64"
+  else
+    extra-libraries:   openal
 
   build-tools:         c2hs >= 0.23 && < 0.24
 

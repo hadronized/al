@@ -15,5 +15,5 @@ import Foreign.Ptr ( Ptr )
 import Sound.AL.Types
 import Sound.ALC.Types
 
-foreign import CALLCV "alcOpenDevice" alcOpenDevice :: Ptr ALubyte -> IO (Ptr ALCdevice)
-foreign import CALLCV "alcCloseDevice" alcCloseDevice :: Ptr ALCdevice -> IO ()
+foreign import CALLCV alcOpenDevice :: Ptr ALubyte -> IO (Ptr ALCdevice)
+foreign import CALLCV alcCloseDevice :: Ptr ALCdevice -> IO ()

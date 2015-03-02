@@ -1,3 +1,8 @@
+## 0.1.1
+
+- Fixed linker issues.
+- Added flag to select stdcall.
+
 ## 0.1.0.3
 
 - Fixed alcOpenDevice.
