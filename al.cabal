@@ -1,5 +1,5 @@
 name:                al
-version:             0.1.0.2
+version:             0.1.0.3
 synopsis:            OpenAL 1.1 raw API.
 description:         __OpenAL__ is a minimalistic sound API that aims to provide
                      bare features for /spacialized audio/. The API looks like
