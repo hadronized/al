@@ -15,6 +15,6 @@ import Foreign.Ptr ( Ptr )
 import Sound.AL.Types
 import Sound.ALC.Types
 
-foreign import CALLCV "alcIsExtensionSupported" alcIsExtensionSupported :: Ptr ALCdevice -> Ptr ALubyte -> IO ALboolean
+foreign import CALLCV "alcIsExtensionPresent" alcIsExtensionPresent :: Ptr ALCdevice -> Ptr ALubyte -> IO ALboolean
 foreign import CALLCV "alcGetProcAddress" alcGetProcAddress :: Ptr ALCdevice -> Ptr ALubyte -> IO (Ptr ALvoid)
 foreign import CALLCV "alcGetEnumValue" alcGetEnumValue :: Ptr ALCdevice -> Ptr ALubyte -> IO ALenum

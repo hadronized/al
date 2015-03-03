@@ -1,3 +1,8 @@
+## 0.1.1.2
+
+- alcIsExtensionSupported doesn’t exist; it’s a typo. Renamed
+  alcIsExtensionPresent.
+
 ## 0.1.1.1
 
 - Fixed a few bugs about architecture compilation.
