@@ -1,3 +1,7 @@
+## 0.1.1.1
+
+- Fixed a few bugs about architecture compilation.
+
 ## 0.1.1
 
 - Fixed linker issues.

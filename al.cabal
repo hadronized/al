@@ -1,5 +1,5 @@
 name:                al
-version:             0.1.1
+version:             0.1.1.1
 synopsis:            OpenAL 1.1 raw API.
 description:         __OpenAL__ is a minimalistic sound API that aims to provide
                      bare features for /spacialized audio/. The API looks like
@@ -52,13 +52,13 @@ library
     cpp-options:       -DCALLCV=ccall
 
   if os(windows)
+    if arch(x86_64)
+      extra-lib-dirs:  "C:\\Program Files (x86)\\OpenAL 1.1 SDK\\libs\\Win64"
+    else
+      extra-lib-dirs:  "C:\\Program Files (x86)\\OpenAL 1.1 SDK\\libs\\Win32"
+
     include-dirs:      "C:\\Program Files (x86)\\OpenAL 1.1 SDK\\include"
     extra-libraries:   OpenAL32
-
-    if arch(i386)
-      extra-lib-dirs:  "C:\\Program Files (x86)\\OpenAL 1.1 SDK\\libs\\Win32"
-    else
-      extra-lib-dirs:  "C:\\Program Files (x86)\\OpenAL 1.1 SDK\\libs\\Win64"
   else
     extra-libraries:   openal
 
