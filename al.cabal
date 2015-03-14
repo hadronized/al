@@ -1,5 +1,5 @@
 name:                al
-version:             0.1.1.2
+version:             0.1.1.3
 synopsis:            OpenAL 1.1 raw API.
 description:         OpenAL is a minimalistic sound API that aims to provide
                      bare features for /spacialized audio/. The API looks like
@@ -60,9 +60,10 @@ library
     include-dirs:      "C:\\Program Files (x86)\\OpenAL 1.1 SDK\\include"
     extra-libraries:   OpenAL32
   else
+    include-dirs:      /usr/include/AL
     extra-libraries:   openal
 
-  build-tools:         c2hs >= 0.23 && < 0.24
+  build-tools:         c2hs >= 0.23 && < 0.25
 
   exposed-modules:     Sound.AL
                      , Sound.AL.Buffer

@@ -1,3 +1,7 @@
+## 0.1.1.3
+
+- Relaxed upper bounds on c2hs to enable the use of c2hs-0.24.*.
+
 ## 0.1.1.2
 
 - alcIsExtensionSupported doesn’t exist; it’s a typo. Renamed
