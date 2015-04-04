@@ -1,5 +1,5 @@
 name:                al
-version:             0.1.1.3
+version:             0.1.2
 synopsis:            OpenAL 1.1 raw API.
 description:         OpenAL is a minimalistic sound API that aims to provide
                      bare features for /spacialized audio/. The API looks like
@@ -8,12 +8,12 @@ description:         OpenAL is a minimalistic sound API that aims to provide
                      Up to now, no OpenAL extension is supported. You're highly
                      invited to contribute ;).
 
-                     EAX is not supported yet eiher. It'll be embedded in
+                     EAX is not supported yet either. It'll be embedded in
                      future releases, soon.
 
                      IMPORTANT: In order to build and install "al", you'll
                      need to pass the path of the /include/ and /libs/ directory
-                     of your OpenAL installation.
+                     of your OpenAL installation if you get errors.
 
                      Then use this to install:
 
@@ -88,6 +88,7 @@ library
                      , ForeignFunctionInterface
 
   build-depends:       base >= 4.7 && < 4.8
+                     , mtl >= 2.1 && < 2.2
 
   hs-source-dirs:      src
 

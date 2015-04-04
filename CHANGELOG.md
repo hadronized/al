@@ -1,3 +1,7 @@
+## 0.1.2
+
+- Everything runs in `(MonadIO m) => m a` instead of `IO a` now on.
+
 ## 0.1.1.3
 
 - Relaxed upper bounds on c2hs to enable the use of c2hs-0.24.*.

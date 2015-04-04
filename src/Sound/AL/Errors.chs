@@ -10,9 +10,12 @@
 
 module Sound.AL.Errors where
 
+import Control.Monad.Trans ( MonadIO(..) )
 import Foreign.C.Types
 import Sound.AL.Types
 
 #include <al.h>
 
-foreign import CALLCV "alGetError" alGetError :: IO ALenum
+foreign import CALLCV "alGetError" alGetError_ :: IO ALenum
+alGetError :: (MonadIO m) => m ALenum
+alGetError = liftIO alGetError_
