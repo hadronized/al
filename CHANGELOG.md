@@ -1,3 +1,7 @@
+## 0.1.3
+
+- Added support for GHC 7.10.1.
+
 ## 0.1.2
 
 - Everything runs in `(MonadIO m) => m a` instead of `IO a` now on.
