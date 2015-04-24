@@ -1,6 +1,6 @@
 ## 0.1.3
 
-- Added support for GHC 7.10.1.
+- Added support for GHC 7.10.1 and lower base.
 
 ## 0.1.2
 
