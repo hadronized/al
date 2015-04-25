@@ -1,3 +1,7 @@
+## 0.1.3.1
+
+- Added support for c2hs 0.25.*.
+
 ## 0.1.3
 
 - Added support for GHC 7.10.1 and lower base.
