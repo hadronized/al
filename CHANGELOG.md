@@ -1,3 +1,7 @@
+## 0.1.3.2
+
+- Added support for pkg-config (UNIX only)
+
 ## 0.1.3.1
 
 - Added support for c2hs 0.25.*.
