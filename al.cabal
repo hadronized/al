@@ -60,7 +60,11 @@ library
     include-dirs:      "C:\\Program Files (x86)\\OpenAL 1.1 SDK\\include"
     extra-libraries:   OpenAL32
   else
-    pkgconfig-depends: openal
+    if os(darwin)
+      frameworks: OpenAL
+      include-dirs: "/System/Library/Frameworks/OpenAL.framework/Headers/"
+    else
+      pkgconfig-depends: openal
 
   build-tools:         c2hs >= 0.23 && < 0.26
 
