@@ -1,3 +1,7 @@
+## 0.1.4
+
+- Mac OS X support (frameworks).
+
 ## 0.1.3.2
 
 - Added support for pkg-config (UNIX only)

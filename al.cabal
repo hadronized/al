@@ -1,5 +1,5 @@
 name:                al
-version:             0.1.3.2
+version:             0.1.4
 synopsis:            OpenAL 1.1 raw API.
 description:         OpenAL is a minimalistic sound API that aims to provide
                      bare features for /spacialized audio/. The API looks like
@@ -11,13 +11,15 @@ description:         OpenAL is a minimalistic sound API that aims to provide
                      EAX is not supported yet either. It'll be embedded in
                      future releases, soon.
 
-                     IMPORTANT: In order to build and install "al", you'll
-                     need to pass the path of the /include/ and /libs/ directory
-                     of your OpenAL installation if you get errors.
+                     In order to build and install "al", you'll need to have
+                     pkg-config installed.
 
-                     Then use this to install:
+                     For Ubuntu users, there might be a bug with pkg-config.
+                     If the install fails, consider using @cabal install al
+                     --extra-include-dirs=/usr/include/AL@ or whatever the path
+                     your OpenAL setup is located to – you can help find that
+                     with @find / -name al.h@.
 
-                     @ cabal install --extra-include-dirs=path_to_include --extra-lib-dirs=path_to_libs @
 license:             BSD3
 license-file:        LICENSE
 author:              Dimitri Sabadie <dimitri.sabadie@gmail.com>
@@ -91,7 +93,7 @@ library
                      , ForeignFunctionInterface
 
   build-depends:       base >= 4.6 && < 5
-                     , mtl >= 2.1 && < 2.3
+                     , mtl  >= 2.1 && < 2.3
 
   hs-source-dirs:      src
 
