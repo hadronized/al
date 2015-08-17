@@ -1,5 +1,5 @@
 name:                al
-version:             0.1.4
+version:             0.1.4.1
 synopsis:            OpenAL 1.1 raw API.
 description:         OpenAL is a minimalistic sound API that aims to provide
                      bare features for /spacialized audio/. The API looks like
@@ -68,7 +68,7 @@ library
     else
       pkgconfig-depends: openal
 
-  build-tools:         c2hs >= 0.23 && < 0.26
+  build-tools:         c2hs >= 0.23 && < 0.27
 
   exposed-modules:     Sound.AL
                      , Sound.AL.Buffer
