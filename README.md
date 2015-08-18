@@ -9,7 +9,7 @@ You’re highly invited to contribute.
 You’ll need `pkg-config` in order to build.
 
 **For Ubuntu users: there’s a bug in the latest Ubuntu LTS, making the `pkg-config` files for OpenAL broken.
-Consider using the following command to install:
+Consider using the following command to install:**
 
     cabal install al --extra-include-dirs=/usr/include/AL
 
