@@ -1,3 +1,8 @@
+## 0.1.4.2
+
+- Fixed some compilation warnings.
+- Added support for c2hs-0.28.
+
 ## 0.1.4.1
 
 - Added support for c2hs 0.2.*.

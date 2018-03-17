@@ -10,8 +10,6 @@
 
 module Sound.AL.Types where
 
-import Foreign.C.Types
-
 #include <al.h>
 
 type ALboolean = {#type ALboolean #}

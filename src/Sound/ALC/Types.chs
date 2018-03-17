@@ -10,8 +10,6 @@
 
 module Sound.ALC.Types where
 
-import Foreign.C.Types
-
 #include <alc.h>
 
 data ALCdevice = ALCdevice
