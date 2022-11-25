@@ -19,7 +19,7 @@ import Sound.AL.Types
 
 foreign import CALLCV "alIsExtensionPresent" alIsExtensionPresent_ :: Ptr ALubyte -> IO ALboolean
 alIsExtensionPresent :: (MonadIO m) => Ptr ALubyte -> m ALboolean
-alIsExtensionPresent = liftIO . alIsExtensionPresent
+alIsExtensionPresent = liftIO . alIsExtensionPresent_
 
 foreign import CALLCV "alGetProcAddress" alGetProcAddress_ :: Ptr ALubyte -> IO (Ptr ALvoid)
 alGetProcAddress :: (MonadIO m) => Ptr ALubyte -> m (Ptr ALvoid)
@@ -27,4 +27,4 @@ alGetProcAddress = liftIO . alGetProcAddress_
 
 foreign import CALLCV "alGetEnumValue" alGetEnumValue_ :: Ptr ALubyte -> IO ALenum
 alGetEnumValue :: (MonadIO m) => Ptr ALubyte -> m ALenum
-alGetEnumValue = liftIO . alGetEnumValue
+alGetEnumValue = liftIO . alGetEnumValue_
