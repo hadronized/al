@@ -60,6 +60,11 @@ jobs:
             sudo add-apt-repository ppa:hvr/ghc
             sudo apt-get install ghc-<< parameters.version >> cabal-install-3.4 libopenal1 pkg-config
             echo 'export PATH=/opt/ghc/bin:$PATH' >> $BASH_ENV
+            less /usr/local/lib/x86_64-linux-gnu/pkgconfig/openal.pc || echo "nope"
+            less /usr/local/lib/pkgconfig/openal.pc || echo "nope"
+            less /usr/local/share/pkgconfig/openal.pc || echo "nope"
+            less /usr/lib/x86_64-linux-gnu/pkgconfig/openal.pc || echo "nope"
+            less /usr/lib/pkgconfig:/usr/share/pkgconfig/openal.pc || echo "nope"
 
       - run:
           name: Update Dependencies
@@ -156,29 +161,29 @@ jobs:
 workflows:
   workflow:
     jobs:
-      - build-arm64:
-          name: aarch64-8.6.5
-      - build-linux:
-          name: linux-8.2.2
-          version: 8.2.2
-      - build-linux:
-          name: linux-8.4.4
-          version: 8.4.4
-      - build-linux:
-          name: linux-8.6.5
-          version: 8.6.5
-      - build-linux:
-          name: linux-8.8.4
-          version: 8.8.4
-      - build-linux:
-          name: linux-8.10.4
-          version: 8.10.4
+#     - build-arm64:
+#         name: aarch64-8.6.5
+#     - build-linux:
+#         name: linux-8.2.2
+#         version: 8.2.2
+#     - build-linux:
+#         name: linux-8.4.4
+#         version: 8.4.4
+#     - build-linux:
+#         name: linux-8.6.5
+#         version: 8.6.5
+#     - build-linux:
+#         name: linux-8.8.4
+#         version: 8.8.4
+#     - build-linux:
+#         name: linux-8.10.4
+#         version: 8.10.4
       - build-linux:
           name: linux-9.0.1
           version: 9.0.1
-      - build-macos:
-          name: macos-lts-19.7
-          resolver: lts-19.7
-      - build-windows:
-          name: windows-lts-19.7
-          resolver: lts-19.7
+#     - build-macos:
+#         name: macos-lts-19.7
+#         resolver: lts-19.7
+#     - build-windows:
+#         name: windows-lts-19.7
+#         resolver: lts-19.7
