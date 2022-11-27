@@ -16,7 +16,7 @@ jobs:
       - run:
           name: Install GHC
           command: |
-            sudo apt-get install ghc cabal-install
+            sudo apt-get install ghc cabal-install libopenal1
 
             # Fix for Cabal-2.4.0.0 not initializing the package DB automatically
             if [ ! -d ~/.cabal/store/ghc-8.6.5 ]; then
@@ -27,7 +27,8 @@ jobs:
             fi
       - run:
           name: Update Dependencies
-          command: cabal new-update && cabal new-install --lib
+          command: cabal new-update && cabal new-install --lib --extra-include-dirs=/use/include/AL
+
       - run:
           name: Build
           command: cabal new-build --enable-tests
@@ -62,7 +63,7 @@ jobs:
 
       - run:
           name: Update Dependencies
-          command: cabal new-update && cabal new-install --lib
+          command: cabal new-update && cabal new-install --lib --extra-include-dirs=/use/include/AL
       - run:
           name: Build
           command: cabal new-build --enable-tests --enable-documentation
@@ -91,6 +92,7 @@ jobs:
       - run:
           name: Install Stack
           command: |
+            brew install openal-soft
             curl -sSL https://get.haskellstack.org/ | sh
 
       - run:
@@ -122,6 +124,7 @@ jobs:
           name: Install Stack
           shell: bash.exe
           command: |
+            choco install openal
             mkdir stack-build
             cd stack-build
             curl -LO --no-progress-meter https://get.haskellstack.org/stable/windows-x86_64.zip
