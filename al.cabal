@@ -1,5 +1,5 @@
 name:                al
-version:             0.1.4.2
+version:             0.2.0.0
 synopsis:            OpenAL 1.1 raw API.
 description:         OpenAL is a minimalistic sound API that aims to provide
                      bare features for /spacialized audio/. The API looks like
@@ -23,8 +23,10 @@ description:         OpenAL is a minimalistic sound API that aims to provide
 license:             BSD3
 license-file:        LICENSE
 author:              Dimitri Sabadie <dimitri.sabadie@gmail.com>
+                     Oleksii Divak <frozenwitness@gmail.com>
 maintainer:          Dimitri Sabadie <dimitri.sabadie@gmail.com>
 copyright:           Dimitri Sabadie
+                     Oleksii Divak
 homepage:            http://github.com/phaazon/al
 bug-reports:         http://github.com/phaazon/al/issues
 
@@ -46,7 +48,7 @@ flag stdcall {
 }
 
 library
-  ghc-options:         -W -Wall -O2
+  ghc-options:         -Wall
 
   if flag(stdcall)
     cpp-options:       -DCALLCV=stdcall
@@ -71,29 +73,9 @@ library
   build-tools:         c2hs >= 0.23 && < 0.29
 
   exposed-modules:     Sound.AL
-                     , Sound.AL.Buffer
-                     , Sound.AL.Defines
-                     , Sound.AL.EAX
-                     , Sound.AL.Errors
-                     , Sound.AL.Extensions
-                     , Sound.AL.Listener
-                     , Sound.AL.Source
-                     , Sound.AL.State
-                     , Sound.AL.Types
-                     , Sound.ALC
-                     , Sound.ALC.Context
-                     , Sound.ALC.Defines
-                     , Sound.ALC.Device
-                     , Sound.ALC.Errors
-                     , Sound.ALC.Extensions
-                     , Sound.ALC.State
-                     , Sound.ALC.Types
+                       Sound.ALC
 
-  default-extensions:  CPP
-                     , ForeignFunctionInterface
-
-  build-depends:       base >= 4.6 && < 5
-                     , mtl  >= 2.1 && < 2.3
+  build-depends:       base >= 4.9 && < 5
 
   hs-source-dirs:      src
 
