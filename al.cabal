@@ -5,20 +5,7 @@ description:         OpenAL is a minimalistic sound API that aims to provide
                      bare features for /spacialized audio/. The API looks like
                      the OpenGL one, thus the libs are pretty great together.
 
-                     Up to now, no OpenAL extension is supported. You're highly
-                     invited to contribute ;).
-
-                     EAX is not supported yet either. It'll be embedded in
-                     future releases, soon.
-
-                     In order to build and install "al", you'll need to have
-                     pkg-config installed.
-
-                     For Ubuntu users, there might be a bug with pkg-config.
-                     If the install fails, consider using @cabal install al
-                     --extra-include-dirs=/usr/include/AL@ or whatever the path
-                     your OpenAL setup is located to – you can help find that
-                     with @find / -name al.h@.
+                     Check the README for information on building this package.
 
 license:             BSD3
 license-file:        LICENSE
