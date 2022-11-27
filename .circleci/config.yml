@@ -87,7 +87,6 @@ jobs:
           name: Install Stack
           command: |
             brew install openal-soft
-            tree /System/Library/Frameworks/OpenAL.framework/
             curl -sSL https://get.haskellstack.org/ | sh
 
       - run:

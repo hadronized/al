@@ -66,7 +66,7 @@ library
   else
     if os(darwin)
       frameworks: OpenAL
-      include-dirs: "/System/Library/Frameworks/OpenAL.framework/Headers/"
+      include-dirs: "/usr/local/opt/openal-soft/include"
     else
       pkgconfig-depends: openal
 
@@ -75,7 +75,7 @@ library
   exposed-modules:     Sound.AL
                        Sound.ALC
 
-  build-depends:       base >= 4.9 && < 5
+  build-depends:       base >= 4.10 && < 5
 
   hs-source-dirs:      src
 
