@@ -347,7 +347,11 @@ module Sound.AL
 
 import           Foreign.Ptr
 
-#include <AL/al.h>
+#ifdef mingw32_HOST_OS
+  #include <al.h>
+#else
+  #include <AL/al.h>
+#endif
 
 -- | 8-bit boolean
 type ALboolean = {#type ALboolean #}

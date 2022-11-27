@@ -110,7 +110,11 @@ module Sound.ALC
 
 import           Foreign.Ptr
 
-#include <AL/alc.h>
+#ifdef mingw32_HOST_OS
+  #include <alc.h>
+#else
+  #include <AL/alc.h>
+#endif
 
 data ALCdevice
 
