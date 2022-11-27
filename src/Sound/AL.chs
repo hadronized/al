@@ -347,7 +347,7 @@ module Sound.AL
 
 import           Foreign.Ptr
 
-#include <AL/al.h>
+#include <al.h>
 
 -- | 8-bit boolean
 type ALboolean = {#type ALboolean #}

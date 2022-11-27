@@ -110,7 +110,7 @@ module Sound.ALC
 
 import           Foreign.Ptr
 
-#include <AL/alc.h>
+#include <alc.h>
 
 data ALCdevice
 
