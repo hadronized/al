@@ -16,7 +16,7 @@ jobs:
       - run:
           name: Install GHC
           command: |
-            sudo apt-get install ghc cabal-install libopenal1
+            sudo apt-get install ghc cabal-install libopenal1 pkg-config
 
             # Fix for Cabal-2.4.0.0 not initializing the package DB automatically
             if [ ! -d ~/.cabal/store/ghc-8.6.5 ]; then
@@ -58,7 +58,7 @@ jobs:
           name: Install GHC
           command: |
             sudo add-apt-repository ppa:hvr/ghc
-            sudo apt-get install ghc-<< parameters.version >> cabal-install-3.4 libopenal1
+            sudo apt-get install ghc-<< parameters.version >> cabal-install-3.4 libopenal1 pkg-config
             echo 'export PATH=/opt/ghc/bin:$PATH' >> $BASH_ENV
 
       - run:
