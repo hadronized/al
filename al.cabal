@@ -1,3 +1,5 @@
+cabal-version:       2.2
+
 name:                al
 version:             0.2.0.0
 synopsis:            OpenAL 1.1 raw API.
@@ -7,7 +9,7 @@ description:         OpenAL is a minimalistic sound API that aims to provide
 
                      Check the README for information on building this package.
 
-license:             BSD3
+license:             BSD-3-Clause
 license-file:        LICENSE
 author:              Dimitri Sabadie <dimitri.sabadie@gmail.com>
                      Oleksii Divak <frozenwitness@gmail.com>
@@ -23,24 +25,27 @@ stability:           experimental
 
 extra-source-files:  CHANGELOG.md
 
-cabal-version:       >= 1.10
-
 source-repository head
   type:     git
   location: git://github.com/phaazon/al.git
 
-flag stdcall {
-  description: Use the stdcall call convention
+flag ccall
+  description: Use the ccall call convention.
   default: False
-}
+
+flag stdcall
+  description: Use the stdcall call convention (takes precedence over the ccall flag).
+  default: False
 
 library
   ghc-options:         -Wall
 
   if flag(stdcall)
     cpp-options:       -DCALLCV=stdcall
-  else
+  elif flag(ccall)
     cpp-options:       -DCALLCV=ccall
+  else
+    cpp-options:       -DCALLCV=capi
 
   if os(windows)
     if arch(x86_64)
