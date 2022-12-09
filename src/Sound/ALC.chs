@@ -111,15 +111,11 @@ module Sound.ALC
 
 import           Foreign.Ptr
 
-#ifdef mingw32_HOST_OS
-  #include <alc.h>
-#else
-  #include <AL/alc.h>
-#endif
+#include <AL/alc.h>
 
-data {-# CTYPE "alc.h" "ALCdevice" #-} ALCdevice
+data {-# CTYPE "AL/alc.h" "ALCdevice" #-} ALCdevice
 
-data {-# CTYPE "alc.h" "ALCcontext" #-} ALCcontext
+data {-# CTYPE "AL/alc.h" "ALCcontext" #-} ALCcontext
 
 -- | 8-bit boolean
 type ALCboolean = {#type ALCboolean #}
@@ -252,48 +248,48 @@ pattern ALC_CAPTURE_SAMPLES                  = {#const ALC_CAPTURE_SAMPLES #}
 
 
 
-foreign import CALLCV "alc.h alcCreateContext"
+foreign import CALLCV "AL/alc.h alcCreateContext"
   alcCreateContext
     :: Ptr ALCdevice       -- ^ device
     -> Ptr ALCint          -- ^ attrlist
     -> IO (Ptr ALCcontext)
 
-foreign import CALLCV "alc.h alcMakeContextCurrent"
+foreign import CALLCV "AL/alc.h alcMakeContextCurrent"
   alcMakeContextCurrent
     :: Ptr ALCcontext -- ^ context
     -> IO ALCboolean
 
-foreign import CALLCV "alc.h alcProcessContext"
+foreign import CALLCV "AL/alc.h alcProcessContext"
   alcProcessContext
     :: Ptr ALCcontext -- ^ context
     -> IO ()
 
-foreign import CALLCV "alc.h alcSuspendContext"
+foreign import CALLCV "AL/alc.h alcSuspendContext"
   alcSuspendContext
     :: Ptr ALCcontext -- ^ context
     -> IO ()
 
-foreign import CALLCV "alc.h alcDestroyContext"
+foreign import CALLCV "AL/alc.h alcDestroyContext"
   alcDestroyContext
     :: Ptr ALCcontext -- ^ context
     -> IO ()
 
-foreign import CALLCV "alc.h alcGetCurrentContext"
+foreign import CALLCV "AL/alc.h alcGetCurrentContext"
   alcGetCurrentContext :: IO (Ptr ALCcontext)
 
-foreign import CALLCV "alc.h alcGetContextsDevice"
+foreign import CALLCV "AL/alc.h alcGetContextsDevice"
   alcGetContextsDevice
     :: Ptr ALCcontext -- ^ context
     -> IO (Ptr ALCdevice)
 
 
 
-foreign import CALLCV "alc.h alcOpenDevice"
+foreign import CALLCV "AL/alc.h alcOpenDevice"
   alcOpenDevice
     :: Ptr ALCchar -- ^ devicename
     -> IO (Ptr ALCdevice)
 
-foreign import CALLCV "alc.h alcCloseDevice"
+foreign import CALLCV "AL/alc.h alcCloseDevice"
   alcCloseDevice
     :: Ptr ALCdevice -- ^ device
     -> IO ALCboolean
@@ -301,26 +297,26 @@ foreign import CALLCV "alc.h alcCloseDevice"
 
 
 -- | Obtain the most recent Context error
-foreign import CALLCV "alc.h alcGetError"
+foreign import CALLCV "AL/alc.h alcGetError"
   alcGetError
     :: Ptr ALCdevice -- ^ device
     -> IO ALCenum
 
 
 
-foreign import CALLCV "alc.h alcIsExtensionPresent"
+foreign import CALLCV "AL/alc.h alcIsExtensionPresent"
   alcIsExtensionPresent
     :: Ptr ALCdevice -- ^ device
     -> Ptr ALCchar   -- ^ extname
     -> IO ALCboolean
 
-foreign import CALLCV "alc.h alcGetProcAddress"
+foreign import CALLCV "AL/alc.h alcGetProcAddress"
   alcGetProcAddress
     :: Ptr ALCdevice -- ^ device
     -> Ptr ALCchar   -- ^ funcname
     -> IO (FunPtr a)
 
-foreign import CALLCV "alc.h alcGetEnumValue"
+foreign import CALLCV "AL/alc.h alcGetEnumValue"
   alcGetEnumValue
     :: Ptr ALCdevice -- ^ device
     -> Ptr ALCchar   -- ^ enumname
@@ -328,13 +324,13 @@ foreign import CALLCV "alc.h alcGetEnumValue"
 
 
 
-foreign import CALLCV "alc.h alcGetString"
+foreign import CALLCV "AL/alc.h alcGetString"
   alcGetString
     :: Ptr ALCdevice    -- ^ device
     -> ALCenum          -- ^ param
     -> IO (Ptr ALCchar)
 
-foreign import CALLCV "alc.h alcGetIntegerv"
+foreign import CALLCV "AL/alc.h alcGetIntegerv"
   alcGetIntegerv
     :: Ptr ALCdevice -- ^ device
     -> ALCenum       -- ^ param
@@ -344,7 +340,7 @@ foreign import CALLCV "alc.h alcGetIntegerv"
 
 
 
-foreign import CALLCV "alc.h alcCaptureOpenDevice"
+foreign import CALLCV "AL/alc.h alcCaptureOpenDevice"
   alcCaptureOpenDevice
     :: Ptr ALCchar        -- ^ devicename
     -> ALCuint            -- ^ frequency
@@ -352,22 +348,22 @@ foreign import CALLCV "alc.h alcCaptureOpenDevice"
     -> ALCsizei           -- ^ buffersize
     -> IO (Ptr ALCdevice)
 
-foreign import CALLCV "alc.h alcCaptureCloseDevice"
+foreign import CALLCV "AL/alc.h alcCaptureCloseDevice"
   alcCaptureCloseDevice
     :: Ptr ALCdevice -- ^ device
     -> IO ALCboolean
 
-foreign import CALLCV "alc.h alcCaptureStart"
+foreign import CALLCV "AL/alc.h alcCaptureStart"
   alcCaptureStart
     :: Ptr ALCdevice -- ^ device
     -> IO ()
 
-foreign import CALLCV "alc.h alcCaptureStop"
+foreign import CALLCV "AL/alc.h alcCaptureStop"
   alcCaptureStop
     :: Ptr ALCdevice -- ^ device
     -> IO ()
 
-foreign import CALLCV "alc.h alcCaptureSamples"
+foreign import CALLCV "AL/alc.h alcCaptureSamples"
   alcCaptureSamples
     :: Ptr ALCdevice -- ^ device
     -> Ptr ALCvoid   -- ^ buffer

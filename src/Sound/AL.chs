@@ -348,11 +348,7 @@ module Sound.AL
 
 import           Foreign.Ptr
 
-#ifdef mingw32_HOST_OS
-  #include <al.h>
-#else
-  #include <AL/al.h>
-#endif
+#include <AL/al.h>
 
 -- | 8-bit boolean
 type ALboolean = {#type ALboolean #}
@@ -730,103 +726,103 @@ pattern AL_EXPONENT_DISTANCE_CLAMPED = {#const AL_EXPONENT_DISTANCE_CLAMPED #}
 
 
 
-foreign import CALLCV "al.h alEnable"
+foreign import CALLCV "AL/al.h alEnable"
   alEnable
     :: ALenum -- ^ capability
     -> IO ()
 
-foreign import CALLCV "al.h alDisable"
+foreign import CALLCV "AL/al.h alDisable"
   alDisable
     :: ALenum -- ^ capability
     -> IO ()
 
-foreign import CALLCV "al.h alIsEnabled"
+foreign import CALLCV "AL/al.h alIsEnabled"
   alIsEnabled
     :: ALenum -- ^ capability
     -> IO ()
 
 
 
-foreign import CALLCV "al.h alGetString"
+foreign import CALLCV "AL/al.h alGetString"
   alGetString
     :: ALenum          -- ^ param
     -> IO (Ptr ALchar)
 
-foreign import CALLCV "al.h alGetBooleanv"
+foreign import CALLCV "AL/al.h alGetBooleanv"
   alGetBooleanv
     :: ALenum        -- ^ param
     -> Ptr ALboolean -- ^ data
     -> IO ()
 
-foreign import CALLCV "al.h alGetIntegerv"
+foreign import CALLCV "AL/al.h alGetIntegerv"
   alGetIntegerv
     :: ALenum    -- ^ param
     -> Ptr ALint -- ^ data
     -> IO ()
 
-foreign import CALLCV "al.h alGetFloatv"
+foreign import CALLCV "AL/al.h alGetFloatv"
   alGetFloatv
     :: ALenum      -- ^ param
     -> Ptr ALfloat -- ^ data
     -> IO ()
 
-foreign import CALLCV "al.h alGetDoublev"
+foreign import CALLCV "AL/al.h alGetDoublev"
   alGetDoublev
     :: ALenum       -- ^ param
     -> Ptr ALdouble -- ^ data
     -> IO ()
 
-foreign import CALLCV "al.h alGetBoolean"
+foreign import CALLCV "AL/al.h alGetBoolean"
   alGetBoolean
     :: ALenum       -- ^ param
     -> IO ALboolean
 
-foreign import CALLCV "al.h alGetInteger"
+foreign import CALLCV "AL/al.h alGetInteger"
   alGetInteger
     :: ALenum   -- ^ param
     -> IO ALint
 
-foreign import CALLCV "al.h alGetFloat"
+foreign import CALLCV "AL/al.h alGetFloat"
   alGetFloat
     :: ALenum     -- ^ param
     -> IO ALfloat
 
-foreign import CALLCV "al.h alGetDouble"
+foreign import CALLCV "AL/al.h alGetDouble"
   alGetDouble
     :: ALenum      -- ^ param
     -> IO ALdouble
 
 
 -- | Obtain the most recent error generated in the AL state machine.
-foreign import CALLCV "al.h alGetError"
+foreign import CALLCV "AL/al.h alGetError"
   alGetError :: IO ALenum
 
 
 
-foreign import CALLCV "al.h alIsExtensionPresent"
+foreign import CALLCV "AL/al.h alIsExtensionPresent"
   alIsExtensionPresent
     :: Ptr ALchar   -- ^ extname
     -> IO ALboolean
 
-foreign import CALLCV "al.h alGetProcAddress"
+foreign import CALLCV "AL/al.h alGetProcAddress"
   alGetProcAddress
     :: Ptr ALchar    -- ^ fname
     -> IO (FunPtr a)
 
-foreign import CALLCV "al.h alGetEnumValue"
+foreign import CALLCV "AL/al.h alGetEnumValue"
   alGetEnumValue
     :: Ptr ALchar -- ^ ename
     -> IO ALenum
 
 
 
-foreign import CALLCV "al.h alListenerf"
+foreign import CALLCV "AL/al.h alListenerf"
   alListenerf
     :: ALenum  -- ^ param
     -> ALfloat -- ^ value
     -> IO ()
 
-foreign import CALLCV "al.h alListener3f"
+foreign import CALLCV "AL/al.h alListener3f"
   alListener3f
     :: ALenum  -- ^ param
     -> ALfloat -- ^ value1
@@ -834,19 +830,19 @@ foreign import CALLCV "al.h alListener3f"
     -> ALfloat -- ^ value3
     -> IO ()
 
-foreign import CALLCV "al.h alListenerfv"
+foreign import CALLCV "AL/al.h alListenerfv"
   alListenerfv
     :: ALenum      -- ^ param
     -> Ptr ALfloat -- ^ values
     -> IO ()
 
-foreign import CALLCV "al.h alListeneri"
+foreign import CALLCV "AL/al.h alListeneri"
   alListeneri
     :: ALenum -- ^ param
     -> ALint  -- ^ value
     -> IO ()
 
-foreign import CALLCV "al.h alListener3i"
+foreign import CALLCV "AL/al.h alListener3i"
   alListener3i
     :: ALenum -- ^ param
     -> ALint  -- ^ value1
@@ -854,19 +850,19 @@ foreign import CALLCV "al.h alListener3i"
     -> ALint  -- ^ value3
     -> IO ()
 
-foreign import CALLCV "al.h alListeneriv"
+foreign import CALLCV "AL/al.h alListeneriv"
   alListeneriv
     :: ALenum    -- ^ param
     -> Ptr ALint -- ^ values
     -> IO ()
 
-foreign import CALLCV "al.h alGetListenerf"
+foreign import CALLCV "AL/al.h alGetListenerf"
   alGetListenerf
     :: ALenum      -- ^ param
     -> Ptr ALfloat -- ^ value
     -> IO ()
 
-foreign import CALLCV "al.h alGetListener3f"
+foreign import CALLCV "AL/al.h alGetListener3f"
   alGetListener3f
     :: ALenum      -- ^ param
     -> Ptr ALfloat -- ^ value1
@@ -874,19 +870,19 @@ foreign import CALLCV "al.h alGetListener3f"
     -> Ptr ALfloat -- ^ value3
     -> IO ()
 
-foreign import CALLCV "al.h alGetListenerfv"
+foreign import CALLCV "AL/al.h alGetListenerfv"
   alGetListenerfv
     :: ALenum      -- ^ param
     -> Ptr ALfloat -- ^ values
     -> IO ()
 
-foreign import CALLCV "al.h alGetListeneri"
+foreign import CALLCV "AL/al.h alGetListeneri"
   alGetListeneri
     :: ALenum    -- ^ param
     -> Ptr ALint -- ^ value
     -> IO ()
 
-foreign import CALLCV "al.h alGetListener3i"
+foreign import CALLCV "AL/al.h alGetListener3i"
   alGetListener3i
     :: ALenum    -- ^ param
     -> Ptr ALint -- ^ value1
@@ -894,7 +890,7 @@ foreign import CALLCV "al.h alGetListener3i"
     -> Ptr ALint -- ^ value3
     -> IO ()
 
-foreign import CALLCV "al.h alGetListeneriv"
+foreign import CALLCV "AL/al.h alGetListeneriv"
   alGetListeneriv
     :: ALenum    -- ^ param
     -> Ptr ALint -- ^ values
@@ -903,33 +899,33 @@ foreign import CALLCV "al.h alGetListeneriv"
 
 
 -- | Create Source objects
-foreign import CALLCV "al.h alGenSources"
+foreign import CALLCV "AL/al.h alGenSources"
   alGenSources
     :: ALsizei    -- ^ n
     -> Ptr ALuint -- ^ source
     -> IO ()
 
 -- | Delete Source objects
-foreign import CALLCV "al.h alDeleteSources"
+foreign import CALLCV "AL/al.h alDeleteSources"
   alDeleteSources
     :: ALsizei    -- ^ n
     -> Ptr ALuint -- ^ sources
     -> IO ()
 
 -- | Verify a handle is a valid Source
-foreign import CALLCV "al.h alIsSource"
+foreign import CALLCV "AL/al.h alIsSource"
   alIsSource
     :: ALuint -- ^ sid
     -> IO ALboolean
 
-foreign import CALLCV "al.h alSourcef"
+foreign import CALLCV "AL/al.h alSourcef"
   alSourcef
     :: ALuint  -- ^ sid
     -> ALenum  -- ^ param
     -> ALfloat -- ^ value
     -> IO ()
 
-foreign import CALLCV "al.h alSource3f"
+foreign import CALLCV "AL/al.h alSource3f"
   alSource3f
     :: ALuint  -- ^ sid
     -> ALenum  -- ^ param
@@ -938,21 +934,21 @@ foreign import CALLCV "al.h alSource3f"
     -> ALfloat -- ^ value3
     -> IO ()
 
-foreign import CALLCV "al.h alSourcefv"
+foreign import CALLCV "AL/al.h alSourcefv"
   alSourcefv
     :: ALuint      -- ^ sid
     -> ALenum      -- ^ param
     -> Ptr ALfloat -- ^ values
     -> IO ()
 
-foreign import CALLCV "al.h alSourcei"
+foreign import CALLCV "AL/al.h alSourcei"
   alSourcei
     :: ALuint -- ^ sid
     -> ALenum -- ^ param
     -> ALint  -- ^ value
     -> IO ()
 
-foreign import CALLCV "al.h alSource3i"
+foreign import CALLCV "AL/al.h alSource3i"
   alSource3i
     :: ALuint -- ^ sid
     -> ALenum -- ^ param
@@ -961,21 +957,21 @@ foreign import CALLCV "al.h alSource3i"
     -> ALint  -- ^ value3
     -> IO ()
 
-foreign import CALLCV "al.h alSourceiv"
+foreign import CALLCV "AL/al.h alSourceiv"
   alSourceiv
     :: ALuint    -- ^ sid
     -> ALenum    -- ^ param
     -> Ptr ALint -- ^ values
     -> IO ()
 
-foreign import CALLCV "al.h alGetSourcef"
+foreign import CALLCV "AL/al.h alGetSourcef"
   alGetSourcef
     :: ALuint      -- ^ sid
     -> ALenum      -- ^ param
     -> Ptr ALfloat -- ^ value
     -> IO ()
 
-foreign import CALLCV "al.h alGetSource3f"
+foreign import CALLCV "AL/al.h alGetSource3f"
   alGetSource3f
     :: ALuint      -- ^ sid
     -> ALenum      -- ^ param
@@ -984,21 +980,21 @@ foreign import CALLCV "al.h alGetSource3f"
     -> Ptr ALfloat -- ^ value3
     -> IO ()
 
-foreign import CALLCV "al.h alGetSourcefv"
+foreign import CALLCV "AL/al.h alGetSourcefv"
   alGetSourcefv
     :: ALuint      -- ^ sid
     -> ALenum      -- ^ param
     -> Ptr ALfloat -- ^ values
     -> IO ()
 
-foreign import CALLCV "al.h alGetSourcei"
+foreign import CALLCV "AL/al.h alGetSourcei"
   alGetSourcei
     :: ALuint    -- ^ sid
     -> ALenum    -- ^ param
     -> Ptr ALint -- ^ value
     -> IO ()
 
-foreign import CALLCV "al.h alGetSource3i"
+foreign import CALLCV "AL/al.h alGetSource3i"
   alGetSource3i
     :: ALuint    -- ^ sid
     -> ALenum    -- ^ param
@@ -1007,7 +1003,7 @@ foreign import CALLCV "al.h alGetSource3i"
     -> Ptr ALint -- ^ value3
     -> IO ()
 
-foreign import CALLCV "al.h alGetSourceiv"
+foreign import CALLCV "AL/al.h alGetSourceiv"
   alGetSourceiv
     :: ALuint    -- ^ sid
     -> ALenum    -- ^ param
@@ -1017,65 +1013,65 @@ foreign import CALLCV "al.h alGetSourceiv"
 
 
 -- | Play, replay, or resume (if paused) a list of Sources
-foreign import CALLCV "al.h alSourcePlayv"
+foreign import CALLCV "AL/al.h alSourcePlayv"
   alSourcePlayv
     :: ALsizei    -- ^ ns
     -> Ptr ALuint -- ^ sids
     -> IO ()
 
 -- | Stop a list of Sources
-foreign import CALLCV "al.h alSourceStopv"
+foreign import CALLCV "AL/al.h alSourceStopv"
   alSourceStopv
     :: ALsizei    -- ^ ns
     -> Ptr ALuint -- ^ sids
     -> IO ()
 
 -- | Rewind a list of Sources
-foreign import CALLCV "al.h alSourceRewindv"
+foreign import CALLCV "AL/al.h alSourceRewindv"
   alSourceRewindv
     :: ALsizei    -- ^ ns
     -> Ptr ALuint -- ^ sids
     -> IO ()
 
 -- | Pause a list of Sources
-foreign import CALLCV "al.h alSourcePausev"
+foreign import CALLCV "AL/al.h alSourcePausev"
   alSourcePausev
     :: ALsizei    -- ^ ns
     -> Ptr ALuint -- ^ sids
     -> IO ()
 
 -- | Play, replay, or resume a Source
-foreign import CALLCV "al.h alSourcePlay"
+foreign import CALLCV "AL/al.h alSourcePlay"
   alSourcePlay
     :: ALuint -- ^ sid
     -> IO ()
 
 -- | Stop a Source
-foreign import CALLCV "al.h alSourceStop"
+foreign import CALLCV "AL/al.h alSourceStop"
   alSourceStop
     :: ALuint -- ^ sid
     -> IO ()
 
 -- | Rewind a Source (set playback postiton to beginning)
-foreign import CALLCV "al.h alSourceRewind"
+foreign import CALLCV "AL/al.h alSourceRewind"
   alSourceRewind
     :: ALuint -- ^ sid
     -> IO ()
 
 -- | Pause a Source
-foreign import CALLCV "al.h alSourcePause"
+foreign import CALLCV "AL/al.h alSourcePause"
   alSourcePause
     :: ALuint -- ^ sid
     -> IO ()
 
-foreign import CALLCV "al.h alSourceQueueBuffers"
+foreign import CALLCV "AL/al.h alSourceQueueBuffers"
   alSourceQueueBuffers
     :: ALuint     -- ^ sid
     -> ALsizei    -- ^ numEntries
     -> Ptr ALuint -- ^ bids
     -> IO ()
 
-foreign import CALLCV "al.h alSourceUnqueueBuffers"
+foreign import CALLCV "AL/al.h alSourceUnqueueBuffers"
   alSourceUnqueueBuffers
     :: ALuint     -- ^ sid
     -> ALsizei    -- ^ numEntries
@@ -1085,27 +1081,27 @@ foreign import CALLCV "al.h alSourceUnqueueBuffers"
 
 
 -- | Create Buffer objects
-foreign import CALLCV "al.h alGenBuffers"
+foreign import CALLCV "AL/al.h alGenBuffers"
   alGenBuffers
     :: ALsizei    -- ^ n
     -> Ptr ALuint -- ^ buffers
     -> IO ()
 
 -- | Delete Buffer objects
-foreign import CALLCV "al.h alDeleteBuffers"
+foreign import CALLCV "AL/al.h alDeleteBuffers"
   alDeleteBuffers
     :: ALsizei    -- ^ n
     -> Ptr ALuint -- ^ buffers
     -> IO ()
 
 -- | Verify a handle is a valid Buffer
-foreign import CALLCV "al.h alIsBuffer"
+foreign import CALLCV "AL/al.h alIsBuffer"
   alIsBuffer
     :: ALuint       -- ^ bid
     -> IO ALboolean
 
 -- | Specify the data to be copied into a buffer
-foreign import CALLCV "al.h alBufferData"
+foreign import CALLCV "AL/al.h alBufferData"
   alBufferData
     :: ALuint     -- ^ bid
     -> ALenum     -- ^ format
@@ -1114,14 +1110,14 @@ foreign import CALLCV "al.h alBufferData"
     -> ALsizei    -- ^ freq
     -> IO ()
 
-foreign import CALLCV "al.h alBufferf"
+foreign import CALLCV "AL/al.h alBufferf"
   alBufferf
     :: ALuint  -- ^ bid
     -> ALenum  -- ^ param
     -> ALfloat -- ^ value
     -> IO ()
 
-foreign import CALLCV "al.h alBuffer3f"
+foreign import CALLCV "AL/al.h alBuffer3f"
   alBuffer3f
     :: ALuint  -- ^ bid
     -> ALenum  -- ^ param
@@ -1130,21 +1126,21 @@ foreign import CALLCV "al.h alBuffer3f"
     -> ALfloat -- ^ value3
     -> IO ()
 
-foreign import CALLCV "al.h alBufferfv"
+foreign import CALLCV "AL/al.h alBufferfv"
   alBufferfv
     :: ALuint      -- ^ bid
     -> ALenum      -- ^ param
     -> Ptr ALfloat -- ^ values
     -> IO ()
 
-foreign import CALLCV "al.h alBufferi"
+foreign import CALLCV "AL/al.h alBufferi"
   alBufferi
     :: ALuint -- ^ bid
     -> ALenum -- ^ param
     -> ALint  -- ^ value
     -> IO ()
 
-foreign import CALLCV "al.h alBuffer3i"
+foreign import CALLCV "AL/al.h alBuffer3i"
   alBuffer3i
     :: ALuint -- ^ bid
     -> ALenum -- ^ param
@@ -1153,21 +1149,21 @@ foreign import CALLCV "al.h alBuffer3i"
     -> ALint  -- ^ value3
     -> IO ()
 
-foreign import CALLCV "al.h alBufferiv"
+foreign import CALLCV "AL/al.h alBufferiv"
   alBufferiv
     :: ALuint    -- ^ bid
     -> ALenum    -- ^ param
     -> Ptr ALint -- ^ values
     -> IO ()
 
-foreign import CALLCV "al.h alGetBufferf"
+foreign import CALLCV "AL/al.h alGetBufferf"
   alGetBufferf
     :: ALuint      -- ^ bid
     -> ALenum      -- ^ param
     -> Ptr ALfloat -- ^ value
     -> IO ()
 
-foreign import CALLCV "al.h alGetBuffer3f"
+foreign import CALLCV "AL/al.h alGetBuffer3f"
   alGetBuffer3f
     :: ALuint      -- ^ bid
     -> ALenum      -- ^ param
@@ -1176,21 +1172,21 @@ foreign import CALLCV "al.h alGetBuffer3f"
     -> Ptr ALfloat -- ^ value3
     -> IO ()
 
-foreign import CALLCV "al.h alGetBufferfv"
+foreign import CALLCV "AL/al.h alGetBufferfv"
   alGetBufferfv
     :: ALuint      -- ^ bid
     -> ALenum      -- ^ param
     -> Ptr ALfloat -- ^ values
     -> IO ()
 
-foreign import CALLCV "al.h alGetBufferi"
+foreign import CALLCV "AL/al.h alGetBufferi"
   alGetBufferi
     :: ALuint    -- ^ bid
     -> ALenum    -- ^ param
     -> Ptr ALint -- ^ value
     -> IO ()
 
-foreign import CALLCV "al.h alGetBuffer3i"
+foreign import CALLCV "AL/al.h alGetBuffer3i"
   alGetBuffer3i
     :: ALuint    -- ^ bid
     -> ALenum    -- ^ param
@@ -1199,7 +1195,7 @@ foreign import CALLCV "al.h alGetBuffer3i"
     -> Ptr ALint -- ^ value3
     -> IO ()
 
-foreign import CALLCV "al.h alGetBufferiv"
+foreign import CALLCV "AL/al.h alGetBufferiv"
   alGetBufferiv
     :: ALuint    -- ^ bid
     -> ALenum    -- ^ param
@@ -1208,22 +1204,22 @@ foreign import CALLCV "al.h alGetBufferiv"
 
 
 
-foreign import CALLCV "al.h alDopplerFactor"
+foreign import CALLCV "AL/al.h alDopplerFactor"
   alDopplerFactor
     :: ALfloat -- ^ value
     -> IO ()
 
-foreign import CALLCV "al.h alDopplerVelocity"
+foreign import CALLCV "AL/al.h alDopplerVelocity"
   alDopplerVelocity
     :: ALfloat -- ^ value
     -> IO ()
 
-foreign import CALLCV "al.h alSpeedOfSound"
+foreign import CALLCV "AL/al.h alSpeedOfSound"
   alSpeedOfSound
     :: ALfloat -- ^ value
     -> IO ()
 
-foreign import CALLCV "al.h alDistanceModel"
+foreign import CALLCV "AL/al.h alDistanceModel"
   alDistanceModel
     :: ALenum -- ^ distanceModel
     -> IO ()
