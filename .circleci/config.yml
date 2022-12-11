@@ -27,7 +27,7 @@ jobs:
             fi
       - run:
           name: Update Dependencies
-          command: cabal new-update && cabal new-install --lib
+          command: cabal new-update
 
       - run:
           name: Build
@@ -60,7 +60,7 @@ jobs:
 
       - run:
           name: Update Dependencies
-          command: cabal new-update && cabal new-install --lib
+          command: cabal new-update
       - run:
           name: Build
           command: cabal new-build --enable-documentation
@@ -146,29 +146,29 @@ jobs:
 workflows:
   workflow:
     jobs:
-#     - build-arm64:
-#         name: aarch64-8.6.5
-#     - build-linux:
-#         name: linux-8.2.2
-#         version: 8.2.2
-#     - build-linux:
-#         name: linux-8.4.4
-#         version: 8.4.4
-#     - build-linux:
-#         name: linux-8.6.5
-#         version: 8.6.5
-#     - build-linux:
-#         name: linux-8.8.4
-#         version: 8.8.4
-#     - build-linux:
-#         name: linux-8.10.4
-#         version: 8.10.4
-#     - build-linux:
-#         name: linux-9.0.1
-#         version: 9.0.1
-#     - build-macos:
-#         name: macos-lts-19.7
-#         resolver: lts-19.7
+      - build-arm64:
+          name: aarch64-8.6.5
+      - build-linux:
+          name: linux-8.2.2
+          version: 8.2.2
+      - build-linux:
+          name: linux-8.4.4
+          version: 8.4.4
+      - build-linux:
+          name: linux-8.6.5
+          version: 8.6.5
+      - build-linux:
+          name: linux-8.8.4
+          version: 8.8.4
+      - build-linux:
+          name: linux-8.10.4
+          version: 8.10.4
+      - build-linux:
+          name: linux-9.0.1
+          version: 9.0.1
+      - build-macos:
+          name: macos-lts-19.7
+          resolver: lts-19.7
       - build-windows:
           name: windows-lts-19.7
           resolver: lts-19.7

@@ -29,6 +29,8 @@ You may need to change the `include-dirs` in `al.cabal` according to what Homebr
 
 ## Windows
 
-The package is explicitly configured to use the OpenAL v1.1 Core SDK.
-You can get it from the [official website](https://www.openal.org/downloads/) or using
-[Chocolatey](https://community.chocolatey.org/packages/openalsdk).
+The package is configured to use the OpenAL v1.1 Core SDK, with the caveat that you should
+move headers from `C:/Program Files (x86)/OpenAL 1.1 SDK/include` to `C:/Program Files (x86)/OpenAL 1.1 SDK/include/AL`.
+
+You can get the Core SDK from the [official website](https://www.openal.org/downloads/)
+or using [Chocolatey](https://community.chocolatey.org/packages/openalsdk).
