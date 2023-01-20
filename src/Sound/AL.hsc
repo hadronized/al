@@ -81,7 +81,7 @@ module Sound.AL
   , pattern AL_STREAMING
   , pattern AL_UNDETERMINED
 
-    -- ** Sound samples: format specifier.
+    -- ** Sound samples: format specifier
   , pattern AL_FORMAT_MONO8
   , pattern AL_FORMAT_MONO16
   , pattern AL_FORMAT_STEREO8
@@ -165,16 +165,19 @@ module Sound.AL
   , alGetFloat
   , alGetDouble
 
-    -- * Error support.
+    -- * Error support
   , alGetError
 
-    -- * Extension support.
+    -- * Extension support
     --
     -- | Query for the presence of an extension, and obtain any appropriate
     --     function pointers and enum values.
   , alIsExtensionPresent
   , alGetProcAddress
   , alGetEnumValue
+
+  , ALFun (..)
+  , alGetFunPtr
 
     -- * Listener
     --
@@ -346,69 +349,71 @@ module Sound.AL
   , alDistanceModel
   ) where
 
+import           Data.Int
+import           Data.Word
 import           Foreign.Ptr
 
 #include <AL/al.h>
 
 -- | 8-bit boolean
-type ALboolean = {#type ALboolean #}
+type ALboolean = #type ALboolean
 
 -- | character
-type ALchar = {#type ALchar #}
+type ALchar = #type ALchar
 
 -- | signed 8-bit 2's complement integer
-type ALbyte = {#type ALbyte #}
+type ALbyte = #type ALbyte
 
 -- | unsigned 8-bit integer
-type ALubyte = {#type ALubyte #}
+type ALubyte = #type ALubyte
 
 -- | signed 16-bit 2's complement integer
-type ALshort = {#type ALshort #}
+type ALshort = #type ALshort
 
 -- | unsigned 16-bit integer
-type ALushort = {#type ALushort #}
+type ALushort = #type ALushort
 
 -- | signed 32-bit 2's complement integer
-type ALint = {#type ALint #}
+type ALint = #type ALint
 
 -- | unsigned 32-bit integer
-type ALuint = {#type ALuint #}
+type ALuint = #type ALuint
 
 -- | non-negative 32-bit binary integer size
-type ALsizei = {#type ALsizei #}
+type ALsizei = #type ALsizei
 
 -- | enumerated 32-bit value
-type ALenum = {#type ALenum #}
+type ALenum = #type ALenum
 
 -- | 32-bit IEEE754 floating-point
-type ALfloat = {#type ALfloat #}
+type ALfloat = #type ALfloat
 
 -- | 64-bit IEEE754 floating-point
-type ALdouble = {#type ALdouble #}
+type ALdouble = #type ALdouble
 
 -- | void type (for opaque pointers only)
-type ALvoid = {#type ALvoid #}
+type ALvoid = Ptr ()
 
 
 
 -- | Bad value
 pattern AL_INVALID :: (Eq a, Num a) => a
-pattern AL_INVALID = {#const AL_INVALID #}
+pattern AL_INVALID = #const AL_INVALID
 
 pattern AL_NONE :: (Eq a, Num a) => a
-pattern AL_NONE = {#const AL_NONE #}
+pattern AL_NONE = #const AL_NONE
 
 -- | Boolean False
 pattern AL_FALSE :: (Eq a, Num a) => a
-pattern AL_FALSE = {#const AL_FALSE #}
+pattern AL_FALSE = #const AL_FALSE
 
 -- | Boolean True
 pattern AL_TRUE :: (Eq a, Num a) => a
-pattern AL_TRUE = {#const AL_TRUE #}
+pattern AL_TRUE = #const AL_TRUE
 
 -- | Indicate Source has relative coordinates
 pattern AL_SOURCE_RELATIVE :: (Eq a, Num a) => a
-pattern AL_SOURCE_RELATIVE = {#const AL_SOURCE_RELATIVE #}
+pattern AL_SOURCE_RELATIVE = #const AL_SOURCE_RELATIVE
 
 {- | Directional source, inner cone angle, in degrees.
 
@@ -417,7 +422,7 @@ pattern AL_SOURCE_RELATIVE = {#const AL_SOURCE_RELATIVE #}
      Default:  360
 -}
 pattern AL_CONE_INNER_ANGLE :: (Eq a, Num a) => a
-pattern AL_CONE_INNER_ANGLE = {#const AL_CONE_INNER_ANGLE #}
+pattern AL_CONE_INNER_ANGLE = #const AL_CONE_INNER_ANGLE
 
 {- | Directional source, outer cone angle, in degrees.
 
@@ -426,7 +431,7 @@ pattern AL_CONE_INNER_ANGLE = {#const AL_CONE_INNER_ANGLE #}
      Default:  360
 -}
 pattern AL_CONE_OUTER_ANGLE :: (Eq a, Num a) => a
-pattern AL_CONE_OUTER_ANGLE = {#const AL_CONE_OUTER_ANGLE #}
+pattern AL_CONE_OUTER_ANGLE = #const AL_CONE_OUTER_ANGLE
 
 {- | Specify the pitch to be applied, either at source, or on mixer results, at listener.
 
@@ -435,7 +440,7 @@ pattern AL_CONE_OUTER_ANGLE = {#const AL_CONE_OUTER_ANGLE #}
      Default: 1.0
 -}
 pattern AL_PITCH :: (Eq a, Num a) => a
-pattern AL_PITCH = {#const AL_PITCH #}
+pattern AL_PITCH = #const AL_PITCH
 
 {- | Specify the current location in three dimensional space.
 
@@ -450,15 +455,15 @@ pattern AL_PITCH = {#const AL_PITCH #}
      Listener position is always in the world coordinate system.
 -}
 pattern AL_POSITION :: (Eq a, Num a) => a
-pattern AL_POSITION = {#const AL_POSITION #}
+pattern AL_POSITION = #const AL_POSITION
 
 -- | Specify the current direction.
 pattern AL_DIRECTION :: (Eq a, Num a) => a
-pattern AL_DIRECTION = {#const AL_DIRECTION #}
+pattern AL_DIRECTION = #const AL_DIRECTION
 
 -- | Specify the current velocity in three dimensional space.
 pattern AL_VELOCITY :: (Eq a, Num a) => a
-pattern AL_VELOCITY = {#const AL_VELOCITY #}
+pattern AL_VELOCITY = #const AL_VELOCITY
 
 {- | Indicate whether source is looping.
 
@@ -469,7 +474,7 @@ pattern AL_VELOCITY = {#const AL_VELOCITY #}
      Default: FALSE.
 -}
 pattern AL_LOOPING :: (Eq a, Num a) => a
-pattern AL_LOOPING = {#const AL_LOOPING #}
+pattern AL_LOOPING = #const AL_LOOPING
 
 {- | Indicate the buffer to provide sound samples.
 
@@ -478,7 +483,7 @@ pattern AL_LOOPING = {#const AL_LOOPING #}
      Range: any valid Buffer id.
 -}
 pattern AL_BUFFER :: (Eq a, Num a) => a
-pattern AL_BUFFER = {#const AL_BUFFER #}
+pattern AL_BUFFER = #const AL_BUFFER
 
 {- | Indicate the gain (volume amplification) applied.
 
@@ -497,7 +502,7 @@ pattern AL_BUFFER = {#const AL_BUFFER #}
        is effectively disabled.
 -}
 pattern AL_GAIN :: (Eq a, Num a) => a
-pattern AL_GAIN = {#const AL_GAIN #}
+pattern AL_GAIN = #const AL_GAIN
 
 {- | Indicate minimum source attenuation
 
@@ -508,7 +513,7 @@ pattern AL_GAIN = {#const AL_GAIN #}
      Logarthmic
 -}
 pattern AL_MIN_GAIN :: (Eq a, Num a) => a
-pattern AL_MIN_GAIN = {#const AL_MIN_GAIN #}
+pattern AL_MIN_GAIN = #const AL_MIN_GAIN
 
 {- | Indicate maximum source attenuation
 
@@ -519,14 +524,14 @@ pattern AL_MIN_GAIN = {#const AL_MIN_GAIN #}
      Logarthmic
 -}
 pattern AL_MAX_GAIN :: (Eq a, Num a) => a
-pattern AL_MAX_GAIN = {#const AL_MAX_GAIN #}
+pattern AL_MAX_GAIN = #const AL_MAX_GAIN
 
 {- | Indicate listener orientation.
 
      at/up
 -}
 pattern AL_ORIENTATION :: (Eq a, Num a) => a
-pattern AL_ORIENTATION = {#const AL_ORIENTATION #}
+pattern AL_ORIENTATION = #const AL_ORIENTATION
 
 {- | Specify the channel mask. (Creative)
 
@@ -535,7 +540,7 @@ pattern AL_ORIENTATION = {#const AL_ORIENTATION #}
      Range: [0 - 255]
 
 pattern AL_CHANNEL_MASK :: (Eq a, Num a) => a
-pattern AL_CHANNEL_MASK = {#const AL_CHANNEL_MASK #}
+pattern AL_CHANNEL_MASK = #const AL_CHANNEL_MASK
 -}
 
 pattern AL_SOURCE_STATE
@@ -544,25 +549,25 @@ pattern AL_SOURCE_STATE
       , AL_PAUSED
       , AL_STOPPED
      :: (Eq a, Num a) => a
-pattern AL_SOURCE_STATE = {#const AL_SOURCE_STATE #}
-pattern AL_INITIAL      = {#const AL_INITIAL #}
-pattern AL_PLAYING      = {#const AL_PLAYING #}
-pattern AL_PAUSED       = {#const AL_PAUSED #}
-pattern AL_STOPPED      = {#const AL_STOPPED #}
+pattern AL_SOURCE_STATE = #const AL_SOURCE_STATE
+pattern AL_INITIAL      = #const AL_INITIAL
+pattern AL_PLAYING      = #const AL_PLAYING
+pattern AL_PAUSED       = #const AL_PAUSED
+pattern AL_STOPPED      = #const AL_STOPPED
 
 pattern AL_BUFFERS_QUEUED
       , AL_BUFFERS_PROCESSED
      :: (Eq a, Num a) => a
-pattern AL_BUFFERS_QUEUED    = {#const AL_BUFFERS_QUEUED #}
-pattern AL_BUFFERS_PROCESSED = {#const AL_BUFFERS_PROCESSED #}
+pattern AL_BUFFERS_QUEUED    = #const AL_BUFFERS_QUEUED
+pattern AL_BUFFERS_PROCESSED = #const AL_BUFFERS_PROCESSED
 
 pattern AL_SEC_OFFSET
       , AL_SAMPLE_OFFSET
       , AL_BYTE_OFFSET
      :: (Eq a, Num a) => a
-pattern AL_SEC_OFFSET    = {#const AL_SEC_OFFSET #}
-pattern AL_SAMPLE_OFFSET = {#const AL_SAMPLE_OFFSET #}
-pattern AL_BYTE_OFFSET   = {#const AL_BYTE_OFFSET #}
+pattern AL_SEC_OFFSET    = #const AL_SEC_OFFSET
+pattern AL_SAMPLE_OFFSET = #const AL_SAMPLE_OFFSET
+pattern AL_BYTE_OFFSET   = #const AL_BYTE_OFFSET
 
 
 pattern AL_SOURCE_TYPE
@@ -570,20 +575,20 @@ pattern AL_SOURCE_TYPE
       , AL_STREAMING
       , AL_UNDETERMINED
      :: (Eq a, Num a) => a
-pattern AL_SOURCE_TYPE  = {#const AL_SOURCE_TYPE #}
-pattern AL_STATIC       = {#const AL_STATIC #}
-pattern AL_STREAMING    = {#const AL_STREAMING #}
-pattern AL_UNDETERMINED = {#const AL_UNDETERMINED #}
+pattern AL_SOURCE_TYPE  = #const AL_SOURCE_TYPE
+pattern AL_STATIC       = #const AL_STATIC
+pattern AL_STREAMING    = #const AL_STREAMING
+pattern AL_UNDETERMINED = #const AL_UNDETERMINED
 
 pattern AL_FORMAT_MONO8
       , AL_FORMAT_MONO16
       , AL_FORMAT_STEREO8
       , AL_FORMAT_STEREO16
      :: (Eq a, Num a) => a
-pattern AL_FORMAT_MONO8    = {#const AL_FORMAT_MONO8 #}
-pattern AL_FORMAT_MONO16   = {#const AL_FORMAT_MONO16 #}
-pattern AL_FORMAT_STEREO8  = {#const AL_FORMAT_STEREO8 #}
-pattern AL_FORMAT_STEREO16 = {#const AL_FORMAT_STEREO16 #}
+pattern AL_FORMAT_MONO8    = #const AL_FORMAT_MONO8
+pattern AL_FORMAT_MONO16   = #const AL_FORMAT_MONO16
+pattern AL_FORMAT_STEREO8  = #const AL_FORMAT_STEREO8
+pattern AL_FORMAT_STEREO16 = #const AL_FORMAT_STEREO16
 
 {- | source specific reference distance
 
@@ -594,7 +599,7 @@ pattern AL_FORMAT_STEREO16 = {#const AL_FORMAT_STEREO16 #}
      At 0.0, no distance attenuation occurs. Default is 1.0.
 -}
 pattern AL_REFERENCE_DISTANCE :: (Eq a, Num a) => a
-pattern AL_REFERENCE_DISTANCE = {#const AL_REFERENCE_DISTANCE #}
+pattern AL_REFERENCE_DISTANCE = #const AL_REFERENCE_DISTANCE
 
 {- | source specific rolloff factor
 
@@ -603,7 +608,7 @@ pattern AL_REFERENCE_DISTANCE = {#const AL_REFERENCE_DISTANCE #}
      Range:  0.0 - +inf
 -}
 pattern AL_ROLLOFF_FACTOR :: (Eq a, Num a) => a
-pattern AL_ROLLOFF_FACTOR = {#const AL_ROLLOFF_FACTOR #}
+pattern AL_ROLLOFF_FACTOR = #const AL_ROLLOFF_FACTOR
 
 {- | Directional source, outer cone gain.
 
@@ -614,7 +619,7 @@ pattern AL_ROLLOFF_FACTOR = {#const AL_ROLLOFF_FACTOR #}
      Logarithmic
 -}
 pattern AL_CONE_OUTER_GAIN :: (Eq a, Num a) => a
-pattern AL_CONE_OUTER_GAIN = {#const AL_CONE_OUTER_GAIN #}
+pattern AL_CONE_OUTER_GAIN = #const AL_CONE_OUTER_GAIN
 
 {- | Indicate distance above which sources are not
      attenuated using the inverse clamped distance model.
@@ -626,7 +631,7 @@ pattern AL_CONE_OUTER_GAIN = {#const AL_CONE_OUTER_GAIN #}
      Range:  0.0 - +inf
 -}
 pattern AL_MAX_DISTANCE :: (Eq a, Num a) => a
-pattern AL_MAX_DISTANCE = {#const AL_MAX_DISTANCE #}
+pattern AL_MAX_DISTANCE = #const AL_MAX_DISTANCE
 
 {- | Sound samples: frequency, in units of Hertz [Hz].
 
@@ -635,71 +640,71 @@ pattern AL_MAX_DISTANCE = {#const AL_MAX_DISTANCE #}
        frequency component.
 -}
 pattern AL_FREQUENCY :: (Eq a, Num a) => a
-pattern AL_FREQUENCY = {#const AL_FREQUENCY #}
+pattern AL_FREQUENCY = #const AL_FREQUENCY
 
 pattern AL_BITS
       , AL_CHANNELS
       , AL_SIZE
      :: (Eq a, Num a) => a
-pattern AL_BITS     = {#const AL_BITS #}
-pattern AL_CHANNELS = {#const AL_CHANNELS #}
-pattern AL_SIZE     = {#const AL_SIZE #}
+pattern AL_BITS     = #const AL_BITS
+pattern AL_CHANNELS = #const AL_CHANNELS
+pattern AL_SIZE     = #const AL_SIZE
 
 pattern AL_UNUSED
       , AL_PENDING
       , AL_PROCESSED
      :: (Eq a, Num a) => a
-pattern AL_UNUSED    = {#const AL_UNUSED #}
-pattern AL_PENDING   = {#const AL_PENDING #}
-pattern AL_PROCESSED = {#const AL_PROCESSED #}
+pattern AL_UNUSED    = #const AL_UNUSED
+pattern AL_PENDING   = #const AL_PENDING
+pattern AL_PROCESSED = #const AL_PROCESSED
 
 pattern AL_NO_ERROR :: (Eq a, Num a) => a
-pattern AL_NO_ERROR = {#const AL_NO_ERROR #}
+pattern AL_NO_ERROR = #const AL_NO_ERROR
 
 pattern AL_INVALID_NAME :: (Eq a, Num a) => a
-pattern AL_INVALID_NAME = {#const AL_INVALID_NAME #}
+pattern AL_INVALID_NAME = #const AL_INVALID_NAME
 
 pattern AL_ILLEGAL_ENUM
       , AL_INVALID_ENUM
      :: (Eq a, Num a) => a
-pattern AL_ILLEGAL_ENUM = {#const AL_ILLEGAL_ENUM #}
-pattern AL_INVALID_ENUM = {#const AL_INVALID_ENUM #}
+pattern AL_ILLEGAL_ENUM = #const AL_ILLEGAL_ENUM
+pattern AL_INVALID_ENUM = #const AL_INVALID_ENUM
 
 pattern AL_INVALID_VALUE :: (Eq a, Num a) => a
-pattern AL_INVALID_VALUE = {#const AL_INVALID_VALUE #}
+pattern AL_INVALID_VALUE = #const AL_INVALID_VALUE
 
 pattern AL_ILLEGAL_COMMAND
       , AL_INVALID_OPERATION
      :: (Eq a, Num a) => a
-pattern AL_ILLEGAL_COMMAND   = {#const AL_ILLEGAL_COMMAND #}
-pattern AL_INVALID_OPERATION = {#const AL_INVALID_OPERATION #}
+pattern AL_ILLEGAL_COMMAND   = #const AL_ILLEGAL_COMMAND
+pattern AL_INVALID_OPERATION = #const AL_INVALID_OPERATION
 
 pattern AL_OUT_OF_MEMORY :: (Eq a, Num a) => a
-pattern AL_OUT_OF_MEMORY = {#const AL_OUT_OF_MEMORY #}
+pattern AL_OUT_OF_MEMORY = #const AL_OUT_OF_MEMORY
 
 pattern AL_VENDOR
       , AL_VERSION
       , AL_RENDERER
       , AL_EXTENSIONS
      :: (Eq a, Num a) => a
-pattern AL_VENDOR     = {#const AL_VENDOR #}
-pattern AL_VERSION    = {#const AL_VERSION #}
-pattern AL_RENDERER   = {#const AL_RENDERER #}
-pattern AL_EXTENSIONS = {#const AL_EXTENSIONS #}
+pattern AL_VENDOR     = #const AL_VENDOR
+pattern AL_VERSION    = #const AL_VERSION
+pattern AL_RENDERER   = #const AL_RENDERER
+pattern AL_EXTENSIONS = #const AL_EXTENSIONS
 
 
 
 -- | Doppler scale.  Default 1.0
 pattern AL_DOPPLER_FACTOR :: (Eq a, Num a) => a
-pattern AL_DOPPLER_FACTOR = {#const AL_DOPPLER_FACTOR #}
+pattern AL_DOPPLER_FACTOR = #const AL_DOPPLER_FACTOR
 
 -- | Tweaks speed of propagation.
 pattern AL_DOPPLER_VELOCITY :: (Eq a, Num a) => a
-pattern AL_DOPPLER_VELOCITY = {#const AL_DOPPLER_VELOCITY #}
+pattern AL_DOPPLER_VELOCITY = #const AL_DOPPLER_VELOCITY
 
 -- | Speed of Sound in units per second
 pattern AL_SPEED_OF_SOUND :: (Eq a, Num a) => a
-pattern AL_SPEED_OF_SOUND = {#const AL_SPEED_OF_SOUND #}
+pattern AL_SPEED_OF_SOUND = #const AL_SPEED_OF_SOUND
 
 /**
  * Distance models
@@ -716,13 +721,13 @@ pattern AL_DISTANCE_MODEL
       , AL_EXPONENT_DISTANCE
       , AL_EXPONENT_DISTANCE_CLAMPED
      :: (Eq a, Num a) => a
-pattern AL_DISTANCE_MODEL            = {#const AL_DISTANCE_MODEL #}
-pattern AL_INVERSE_DISTANCE          = {#const AL_INVERSE_DISTANCE #}
-pattern AL_INVERSE_DISTANCE_CLAMPED  = {#const AL_INVERSE_DISTANCE_CLAMPED #}
-pattern AL_LINEAR_DISTANCE           = {#const AL_LINEAR_DISTANCE #}
-pattern AL_LINEAR_DISTANCE_CLAMPED   = {#const AL_LINEAR_DISTANCE_CLAMPED #}
-pattern AL_EXPONENT_DISTANCE         = {#const AL_EXPONENT_DISTANCE #}
-pattern AL_EXPONENT_DISTANCE_CLAMPED = {#const AL_EXPONENT_DISTANCE_CLAMPED #}
+pattern AL_DISTANCE_MODEL            = #const AL_DISTANCE_MODEL
+pattern AL_INVERSE_DISTANCE          = #const AL_INVERSE_DISTANCE
+pattern AL_INVERSE_DISTANCE_CLAMPED  = #const AL_INVERSE_DISTANCE_CLAMPED
+pattern AL_LINEAR_DISTANCE           = #const AL_LINEAR_DISTANCE
+pattern AL_LINEAR_DISTANCE_CLAMPED   = #const AL_LINEAR_DISTANCE_CLAMPED
+pattern AL_EXPONENT_DISTANCE         = #const AL_EXPONENT_DISTANCE
+pattern AL_EXPONENT_DISTANCE_CLAMPED = #const AL_EXPONENT_DISTANCE_CLAMPED
 
 
 
@@ -813,6 +818,15 @@ foreign import CALLCV "AL/al.h alGetEnumValue"
   alGetEnumValue
     :: Ptr ALchar -- ^ ename
     -> IO ALenum
+
+
+
+-- | Type-safe AL function name
+newtype ALFun a = ALFun (Ptr ALchar)
+
+-- | Type-safe alternative to 'alGetProcAddress'
+alGetFunPtr :: ALFun a -> IO (FunPtr a)
+alGetFunPtr (ALFun ptr) = alGetProcAddress ptr
 
 
 

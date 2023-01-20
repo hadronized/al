@@ -62,13 +62,67 @@ library
     else
       pkgconfig-depends: openal
 
-  build-tools:         c2hs >= 0.23 && < 0.29
+  build-tool-depends:  hsc2hs:hsc2hs
 
   exposed-modules:     Sound.AL
+                       Sound.AL.Ext.EXT_ALAW
+                       Sound.AL.Ext.EXT_BFORMAT
+                       Sound.AL.Ext.EXT_DOUBLE
+                       Sound.AL.Ext.EXT_FLOAT32
+                       Sound.AL.Ext.EXT_IMA4
+                       Sound.AL.Ext.EXT_MCFORMATS
+                       Sound.AL.Ext.EXT_MULAW_BFORMAT
+                       Sound.AL.Ext.EXT_MULAW
+                       Sound.AL.Ext.EXT_MULAW_MCFORMATS
+                       Sound.AL.Ext.EXT_source_distance_model
+                       Sound.AL.Ext.SOFT_bformat_ex
+                       Sound.AL.Ext.SOFT_block_alignment
+                       Sound.AL.Ext.SOFT_buffer_samples
+                       Sound.AL.Ext.SOFT_buffer_sub_data
+                       Sound.AL.Ext.SOFT_callback_buffer
+                       Sound.AL.Ext.SOFT_deferred_updates
+                       Sound.AL.Ext.SOFT_direct_channels
+                       Sound.AL.Ext.SOFT_direct_channels_remix
+                       Sound.AL.Ext.SOFT_effect_target
+                       Sound.AL.Ext.SOFT_events
+                       Sound.AL.Ext.SOFT_gain_clamp_ex
+                       Sound.AL.Ext.SOFT_loop_points
+                       Sound.AL.Ext.SOFT_MSADPCM
+                       Sound.AL.Ext.SOFT_source_latency
+                       Sound.AL.Ext.SOFT_source_length
+                       Sound.AL.Ext.SOFT_source_resampler
+                       Sound.AL.Ext.SOFT_source_spatialize
+                       Sound.AL.Ext.SOFT_UHJ
+                       Sound.AL.Ext.SOFTX_map_buffer
+
                        Sound.ALC
+                       Sound.ALC.Ext.EXT_disconnect
+                       Sound.ALC.Ext.EXT_EFX
+                       Sound.ALC.Ext.EXT_thread_local_context
+                       Sound.ALC.Ext.SOFT_device_clock
+                       Sound.ALC.Ext.SOFT_HRTF
+                       Sound.ALC.Ext.SOFT_loopback_bformat
+                       Sound.ALC.Ext.SOFT_loopback
+                       Sound.ALC.Ext.SOFT_output_limiter
+                       Sound.ALC.Ext.SOFT_output_mode
+                       Sound.ALC.Ext.SOFT_pause_device
+                       Sound.ALC.Ext.SOFT_reopen_device
 
   build-depends:       base >= 4.10 && < 5
 
   hs-source-dirs:      src
+
+  default-language:    Haskell2010
+
+test-suite extensions
+  type:                exitcode-stdio-1.0
+
+  hs-source-dirs:      test/extensions
+  main-is:             Main.hs
+
+  build-depends:       al
+                     , base > 4 && < 5
+
+  ghc-options:         -Wall
 
   default-language:    Haskell2010
