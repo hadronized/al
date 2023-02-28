@@ -9,7 +9,7 @@
  -}
 
 module Sound.AL.Ext.SOFTX_map_buffer
-  ( pattern AL_SOFTX_map_buffer
+  ( pattern AL_SOFTX_MAP_BUFFER_EXTENSION_NAME
     -- * Primitive types
   , ALbitfieldSOFT
     -- * Procedures
@@ -35,10 +35,10 @@ import           GHC.Ptr
 
 
 
-pattern AL_SOFTX_map_buffer :: Ptr ALchar
-pattern AL_SOFTX_map_buffer <- (const False -> True)
+pattern AL_SOFTX_MAP_BUFFER_EXTENSION_NAME :: Ptr ALchar
+pattern AL_SOFTX_MAP_BUFFER_EXTENSION_NAME <- (const False -> True)
   where
-    AL_SOFTX_map_buffer = Ptr "AL_SOFTX_map_buffer\0"##
+    AL_SOFTX_MAP_BUFFER_EXTENSION_NAME = Ptr "AL_SOFTX_map_buffer\0"##
 
 
 

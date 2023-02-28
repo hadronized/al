@@ -8,7 +8,7 @@
  -}
 
 module Sound.AL.Ext.SOFT_direct_channels_remix
-  ( pattern AL_SOFT_direct_channels_remix
+  ( pattern AL_SOFT_DIRECT_CHANNELS_REMIX_EXTENSION_NAME
     -- * Tokens
   , pattern AL_DROP_UNMATCHED_SOFT
   , pattern AL_REMIX_UNMATCHED_SOFT
@@ -20,10 +20,10 @@ import           GHC.Ptr
 
 
 
-pattern AL_SOFT_direct_channels_remix :: Ptr ALchar
-pattern AL_SOFT_direct_channels_remix <- (const False -> True)
+pattern AL_SOFT_DIRECT_CHANNELS_REMIX_EXTENSION_NAME :: Ptr ALchar
+pattern AL_SOFT_DIRECT_CHANNELS_REMIX_EXTENSION_NAME <- (const False -> True)
   where
-    AL_SOFT_direct_channels_remix = Ptr "AL_SOFT_direct_channels_remix\0"#
+    AL_SOFT_DIRECT_CHANNELS_REMIX_EXTENSION_NAME = Ptr "AL_SOFT_direct_channels_remix\0"#
 
 
 

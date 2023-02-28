@@ -8,7 +8,7 @@
  -}
 
 module Sound.AL.Ext.SOFT_MSADPCM
-  ( pattern AL_SOFT_MSADPCM
+  ( pattern AL_SOFT_MSADPCM_EXTENSION_NAME
     -- * Tokens
   , pattern AL_FORMAT_MONO_MSADPCM_SOFT
   , pattern AL_FORMAT_STEREO_MSADPCM_SOFT
@@ -20,10 +20,10 @@ import           GHC.Ptr
 
 
 
-pattern AL_SOFT_MSADPCM :: Ptr ALchar
-pattern AL_SOFT_MSADPCM <- (const False -> True)
+pattern AL_SOFT_MSADPCM_EXTENSION_NAME :: Ptr ALchar
+pattern AL_SOFT_MSADPCM_EXTENSION_NAME <- (const False -> True)
   where
-    AL_SOFT_MSADPCM = Ptr "AL_SOFT_MSADPCM\0"#
+    AL_SOFT_MSADPCM_EXTENSION_NAME = Ptr "AL_SOFT_MSADPCM\0"#
 
 
 

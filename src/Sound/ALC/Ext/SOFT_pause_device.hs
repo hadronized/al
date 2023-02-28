@@ -8,7 +8,7 @@
 -}
 
 module Sound.ALC.Ext.SOFT_pause_device
-  ( pattern ALC_SOFT_pause_device
+  ( pattern ALC_SOFT_PAUSE_DEVICE_EXTENSION_NAME
     -- * Procedures
   , ALCDevicePauseSOFT
   , alcFunDevicePauseSOFT
@@ -22,10 +22,10 @@ import           GHC.Ptr
 
 
 
-pattern ALC_SOFT_pause_device :: Ptr ALCchar
-pattern ALC_SOFT_pause_device <- (const False -> True)
+pattern ALC_SOFT_PAUSE_DEVICE_EXTENSION_NAME :: Ptr ALCchar
+pattern ALC_SOFT_PAUSE_DEVICE_EXTENSION_NAME <- (const False -> True)
   where
-    ALC_SOFT_pause_device = Ptr "ALC_SOFT_pause_device\0"#
+    ALC_SOFT_PAUSE_DEVICE_EXTENSION_NAME = Ptr "ALC_SOFT_pause_device\0"#
 
 
 

@@ -8,7 +8,7 @@
  -}
 
 module Sound.AL.Ext.SOFT_bformat_ex
-  ( pattern AL_SOFT_bformat_ex
+  ( pattern AL_SOFT_BFORMAT_EX_EXTENSION_NAME
     -- * Tokens
   , pattern AL_AMBISONIC_LAYOUT_SOFT
   , pattern AL_AMBISONIC_SCALING_SOFT
@@ -27,10 +27,10 @@ import           GHC.Ptr
 
 
 
-pattern AL_SOFT_bformat_ex :: Ptr ALchar
-pattern AL_SOFT_bformat_ex <- (const False -> True)
+pattern AL_SOFT_BFORMAT_EX_EXTENSION_NAME :: Ptr ALchar
+pattern AL_SOFT_BFORMAT_EX_EXTENSION_NAME <- (const False -> True)
   where
-    AL_SOFT_bformat_ex = Ptr "AL_SOFT_bformat_ex\0"#
+    AL_SOFT_BFORMAT_EX_EXTENSION_NAME = Ptr "AL_SOFT_bformat_ex\0"#
 
 
 

@@ -8,7 +8,7 @@
 -}
 
 module Sound.ALC.Ext.SOFT_HRTF
-  ( pattern ALC_SOFT_HRTF
+  ( pattern ALC_SOFT_HRTF_EXTENSION_NAME
     -- * Procedures
   , ALCGetStringiSOFT
   , alcFunGetStringiSOFT
@@ -40,10 +40,10 @@ import           GHC.Ptr
 
 
 
-pattern ALC_SOFT_HRTF :: Ptr ALCchar
-pattern ALC_SOFT_HRTF <- (const False -> True)
+pattern ALC_SOFT_HRTF_EXTENSION_NAME :: Ptr ALCchar
+pattern ALC_SOFT_HRTF_EXTENSION_NAME <- (const False -> True)
   where
-    ALC_SOFT_HRTF = Ptr "ALC_SOFT_HRTF\0"#
+    ALC_SOFT_HRTF_EXTENSION_NAME = Ptr "ALC_SOFT_HRTF\0"#
 
 
 

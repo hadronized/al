@@ -8,7 +8,7 @@
  -}
 
 module Sound.AL.Ext.SOFT_direct_channels
-  ( pattern AL_SOFT_direct_channels
+  ( pattern AL_SOFT_DIRECT_CHANNELS_EXTENSION_NAME
     -- * Tokens
   , pattern AL_DIRECT_CHANNELS_SOFT
   ) where
@@ -19,10 +19,10 @@ import           GHC.Ptr
 
 
 
-pattern AL_SOFT_direct_channels :: Ptr ALchar
-pattern AL_SOFT_direct_channels <- (const False -> True)
+pattern AL_SOFT_DIRECT_CHANNELS_EXTENSION_NAME :: Ptr ALchar
+pattern AL_SOFT_DIRECT_CHANNELS_EXTENSION_NAME <- (const False -> True)
   where
-    AL_SOFT_direct_channels = Ptr "AL_SOFT_direct_channels\0"#
+    AL_SOFT_DIRECT_CHANNELS_EXTENSION_NAME = Ptr "AL_SOFT_direct_channels\0"#
 
 
 

@@ -8,7 +8,7 @@
  -}
 
 module Sound.ALC.Ext.SOFT_output_limiter
-  ( pattern ALC_SOFT_output_limiter
+  ( pattern ALC_SOFT_OUTPUT_LIMITER_EXTENSION_NAME
     -- * Procedures
   , ALCResetDeviceSOFT
   , alcFunResetDeviceSOFT
@@ -24,10 +24,10 @@ import           GHC.Ptr
 
 
 
-pattern ALC_SOFT_output_limiter :: Ptr ALCchar
-pattern ALC_SOFT_output_limiter <- (const False -> True)
+pattern ALC_SOFT_OUTPUT_LIMITER_EXTENSION_NAME :: Ptr ALCchar
+pattern ALC_SOFT_OUTPUT_LIMITER_EXTENSION_NAME <- (const False -> True)
   where
-    ALC_SOFT_output_limiter = Ptr "ALC_SOFT_output_limiter\0"#
+    ALC_SOFT_OUTPUT_LIMITER_EXTENSION_NAME = Ptr "ALC_SOFT_output_limiter\0"#
 
 
 

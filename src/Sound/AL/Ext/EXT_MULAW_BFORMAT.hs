@@ -6,7 +6,7 @@
  -}
 
 module Sound.AL.Ext.EXT_MULAW_BFORMAT
-  ( pattern AL_EXT_MULAW_BFORMAT
+  ( pattern AL_EXT_MULAW_BFORMAT_EXTENSION_NAME
     -- * Tokens
   , pattern AL_FORMAT_BFORMAT2D_MULAW
   , pattern AL_FORMAT_BFORMAT3D_MULAW
@@ -18,10 +18,10 @@ import           GHC.Ptr
 
 
 
-pattern AL_EXT_MULAW_BFORMAT :: Ptr ALchar
-pattern AL_EXT_MULAW_BFORMAT <- (const False -> True)
+pattern AL_EXT_MULAW_BFORMAT_EXTENSION_NAME :: Ptr ALchar
+pattern AL_EXT_MULAW_BFORMAT_EXTENSION_NAME <- (const False -> True)
   where
-    AL_EXT_MULAW_BFORMAT = Ptr "AL_EXT_MULAW_BFORMAT\0"#
+    AL_EXT_MULAW_BFORMAT_EXTENSION_NAME = Ptr "AL_EXT_MULAW_BFORMAT\0"#
 
 
 

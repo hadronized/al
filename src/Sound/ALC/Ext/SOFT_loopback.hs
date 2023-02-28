@@ -8,7 +8,7 @@
  -}
 
 module Sound.ALC.Ext.SOFT_loopback
-  ( pattern ALC_SOFT_loopback
+  ( pattern ALC_SOFT_LOOPBACK_EXTENSION_NAME
     -- * Procedures
   , ALCLoopbackOpenDeviceSOFT
   , alcFunLoopbackOpenDeviceSOFT
@@ -42,10 +42,10 @@ import           GHC.Ptr
 
 
 
-pattern ALC_SOFT_loopback :: Ptr ALCchar
-pattern ALC_SOFT_loopback <- (const False -> True)
+pattern ALC_SOFT_LOOPBACK_EXTENSION_NAME :: Ptr ALCchar
+pattern ALC_SOFT_LOOPBACK_EXTENSION_NAME <- (const False -> True)
   where
-    ALC_SOFT_loopback = Ptr "ALC_SOFT_loopback\0"#
+    ALC_SOFT_LOOPBACK_EXTENSION_NAME = Ptr "ALC_SOFT_loopback\0"#
 
 
 

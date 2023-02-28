@@ -8,7 +8,7 @@
  -}
 
 module Sound.AL.Ext.SOFT_buffer_sub_data
-  ( pattern AL_SOFT_buffer_sub_data
+  ( pattern AL_SOFT_BUFFER_SUB_DATA_EXTENSION_NAME
     -- * Procedures
   , ALBufferSubDataSOFT
   , alFunBufferSubDataSOFT
@@ -23,10 +23,10 @@ import           GHC.Ptr
 
 
 
-pattern AL_SOFT_buffer_sub_data :: Ptr ALchar
-pattern AL_SOFT_buffer_sub_data <- (const False -> True)
+pattern AL_SOFT_BUFFER_SUB_DATA_EXTENSION_NAME :: Ptr ALchar
+pattern AL_SOFT_BUFFER_SUB_DATA_EXTENSION_NAME <- (const False -> True)
   where
-    AL_SOFT_buffer_sub_data = Ptr "AL_SOFT_buffer_sub_data\0"#
+    AL_SOFT_BUFFER_SUB_DATA_EXTENSION_NAME = Ptr "AL_SOFT_buffer_sub_data\0"#
 
 
 

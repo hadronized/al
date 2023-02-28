@@ -6,7 +6,7 @@
  -}
 
 module Sound.AL.Ext.EXT_MULAW_MCFORMATS
-  ( pattern AL_EXT_MULAW_MCFORMATS
+  ( pattern AL_EXT_MULAW_MCFORMATS_EXTENSION_NAME
     -- * Tokens
   , pattern AL_FORMAT_MONO_MULAW
   , pattern AL_FORMAT_STEREO_MULAW
@@ -23,10 +23,10 @@ import           GHC.Ptr
 
 
 
-pattern AL_EXT_MULAW_MCFORMATS :: Ptr ALchar
-pattern AL_EXT_MULAW_MCFORMATS <- (const False -> True)
+pattern AL_EXT_MULAW_MCFORMATS_EXTENSION_NAME :: Ptr ALchar
+pattern AL_EXT_MULAW_MCFORMATS_EXTENSION_NAME <- (const False -> True)
   where
-    AL_EXT_MULAW_MCFORMATS = Ptr "AL_EXT_MULAW_MCFORMATS\0"#
+    AL_EXT_MULAW_MCFORMATS_EXTENSION_NAME = Ptr "AL_EXT_MULAW_MCFORMATS\0"#
 
 
 

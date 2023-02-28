@@ -16,7 +16,7 @@
  -}
 
 module Sound.AL.Ext.EXT_BFORMAT
-  ( pattern AL_EXT_BFORMAT
+  ( pattern AL_EXT_BFORMAT_EXTENSION_NAME
     -- * Tokens
   , pattern AL_FORMAT_BFORMAT2D_8
   , pattern AL_FORMAT_BFORMAT2D_16
@@ -32,10 +32,11 @@ import           GHC.Ptr
 
 
 
-pattern AL_EXT_BFORMAT :: Ptr ALchar
-pattern AL_EXT_BFORMAT <- (const False -> True)
+pattern AL_EXT_BFORMAT_EXTENSION_NAME :: Ptr ALchar
+pattern AL_EXT_BFORMAT_EXTENSION_NAME <- (const False -> True)
   where
-    AL_EXT_BFORMAT = Ptr "AL_EXT_BFORMAT\0"#
+    AL_EXT_BFORMAT_EXTENSION_NAME = Ptr "AL_EXT_BFORMAT\0"#
+
 
 
 pattern AL_FORMAT_BFORMAT2D_8

@@ -8,7 +8,7 @@
  -}
 
 module Sound.AL.Ext.SOFT_callback_buffer
-  ( pattern AL_SOFT_callback_buffer
+  ( pattern AL_SOFT_CALLBACK_BUFFER_EXTENSION_NAME
     -- * Types
   , ALBufferCallbackTypeSOFT
     -- * Procedures
@@ -31,10 +31,10 @@ import           GHC.Ptr
 
 
 
-pattern AL_SOFT_callback_buffer :: Ptr ALchar
-pattern AL_SOFT_callback_buffer <- (const False -> True)
+pattern AL_SOFT_CALLBACK_BUFFER_EXTENSION_NAME :: Ptr ALchar
+pattern AL_SOFT_CALLBACK_BUFFER_EXTENSION_NAME <- (const False -> True)
   where
-    AL_SOFT_callback_buffer = Ptr "AL_SOFT_callback_buffer\0"#
+    AL_SOFT_CALLBACK_BUFFER_EXTENSION_NAME = Ptr "AL_SOFT_callback_buffer\0"#
 
 
 

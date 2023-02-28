@@ -6,7 +6,7 @@
  -}
 
 module Sound.AL.Ext.EXT_DOUBLE
-  ( pattern AL_EXT_DOUBLE
+  ( pattern AL_EXT_DOUBLE_EXTENSION_NAME
     -- * Tokens
   , pattern AL_FORMAT_MONO_DOUBLE_EXT
   , pattern AL_FORMAT_STEREO_DOUBLE_EXT
@@ -18,10 +18,10 @@ import           GHC.Ptr
 
 
 
-pattern AL_EXT_DOUBLE :: Ptr ALchar
-pattern AL_EXT_DOUBLE <- (const False -> True)
+pattern AL_EXT_DOUBLE_EXTENSION_NAME :: Ptr ALchar
+pattern AL_EXT_DOUBLE_EXTENSION_NAME <- (const False -> True)
   where
-    AL_EXT_DOUBLE = Ptr "AL_EXT_DOUBLE\0"#
+    AL_EXT_DOUBLE_EXTENSION_NAME = Ptr "AL_EXT_DOUBLE\0"#
 
 
 

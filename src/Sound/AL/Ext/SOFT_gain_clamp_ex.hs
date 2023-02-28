@@ -8,7 +8,7 @@
  -}
 
 module Sound.AL.Ext.SOFT_gain_clamp_ex
-  ( pattern AL_SOFT_gain_clamp_ex
+  ( pattern AL_SOFT_GAIN_CLAMP_EX_EXTENSION_NAME
     -- * Tokens
   , pattern AL_GAIN_LIMIT_SOFT
   ) where
@@ -19,10 +19,10 @@ import           GHC.Ptr
 
 
 
-pattern AL_SOFT_gain_clamp_ex :: Ptr ALchar
-pattern AL_SOFT_gain_clamp_ex <- (const False -> True)
+pattern AL_SOFT_GAIN_CLAMP_EX_EXTENSION_NAME :: Ptr ALchar
+pattern AL_SOFT_GAIN_CLAMP_EX_EXTENSION_NAME <- (const False -> True)
   where
-    AL_SOFT_gain_clamp_ex = Ptr "AL_SOFT_gain_clamp_ex\0"#
+    AL_SOFT_GAIN_CLAMP_EX_EXTENSION_NAME = Ptr "AL_SOFT_gain_clamp_ex\0"#
 
 
 

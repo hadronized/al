@@ -8,7 +8,7 @@
  -}
 
 module Sound.AL.Ext.SOFT_UHJ
-  ( pattern AL_SOFT_UHJ
+  ( pattern AL_SOFT_UHJ_EXTENSION_NAME
     -- * Tokens
   , pattern AL_FORMAT_UHJ2CHN8_SOFT
   , pattern AL_FORMAT_UHJ2CHN16_SOFT
@@ -34,10 +34,11 @@ import           GHC.Ptr
 
 
 
-pattern AL_SOFT_UHJ :: Ptr ALchar
-pattern AL_SOFT_UHJ <- (const False -> True)
+pattern AL_SOFT_UHJ_EXTENSION_NAME :: Ptr ALchar
+pattern AL_SOFT_UHJ_EXTENSION_NAME <- (const False -> True)
   where
-    AL_SOFT_UHJ = Ptr "AL_SOFT_UHJ\0"#
+    AL_SOFT_UHJ_EXTENSION_NAME = Ptr "AL_SOFT_UHJ\0"#
+
 
 
 pattern AL_FORMAT_UHJ2CHN8_SOFT

@@ -8,7 +8,7 @@
  -}
 
 module Sound.AL.Ext.EXT_source_distance_model
-  ( pattern AL_EXT_source_distance_model
+  ( pattern AL_EXT_SOURCE_DISTANCE_MODEL_EXTENSION_NAME
     -- * Tokens
   , pattern AL_SOURCE_DISTANCE_MODEL
   ) where
@@ -19,10 +19,10 @@ import           GHC.Ptr
 
 
 
-pattern AL_EXT_source_distance_model :: Ptr ALchar
-pattern AL_EXT_source_distance_model <- (const False -> True)
+pattern AL_EXT_SOURCE_DISTANCE_MODEL_EXTENSION_NAME :: Ptr ALchar
+pattern AL_EXT_SOURCE_DISTANCE_MODEL_EXTENSION_NAME <- (const False -> True)
   where
-    AL_EXT_source_distance_model = Ptr "AL_EXT_source_distance_model\0"#
+    AL_EXT_SOURCE_DISTANCE_MODEL_EXTENSION_NAME = Ptr "AL_EXT_source_distance_model\0"#
 
 
 

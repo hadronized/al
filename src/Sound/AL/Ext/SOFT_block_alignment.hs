@@ -8,7 +8,7 @@
  -}
 
 module Sound.AL.Ext.SOFT_block_alignment
-  ( pattern AL_SOFT_block_alignment
+  ( pattern AL_SOFT_BLOCK_ALIGNMENT_EXTENSION_NAME
     -- * Tokens
   , pattern AL_UNPACK_BLOCK_ALIGNMENT_SOFT
   , pattern AL_PACK_BLOCK_ALIGNMENT_SOFT
@@ -20,10 +20,10 @@ import           GHC.Ptr
 
 
 
-pattern AL_SOFT_block_alignment :: Ptr ALchar
-pattern AL_SOFT_block_alignment <- (const False -> True)
+pattern AL_SOFT_BLOCK_ALIGNMENT_EXTENSION_NAME :: Ptr ALchar
+pattern AL_SOFT_BLOCK_ALIGNMENT_EXTENSION_NAME <- (const False -> True)
   where
-    AL_SOFT_block_alignment = Ptr "AL_SOFT_block_alignment\0"#
+    AL_SOFT_BLOCK_ALIGNMENT_EXTENSION_NAME = Ptr "AL_SOFT_block_alignment\0"#
 
 
 

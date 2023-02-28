@@ -8,7 +8,7 @@
  -}
 
 module Sound.AL.Ext.SOFT_deferred_updates
-  ( pattern AL_SOFT_deferred_updates
+  ( pattern AL_SOFT_DEFERRED_UPDATES_EXTENSION_NAME
     -- * Procedures
   , ALDeferUpdatesSOFT
   , alFunDeferUpdatesSOFT
@@ -24,10 +24,10 @@ import           GHC.Ptr
 
 
 
-pattern AL_SOFT_deferred_updates :: Ptr ALchar
-pattern AL_SOFT_deferred_updates <- (const False -> True)
+pattern AL_SOFT_DEFERRED_UPDATES_EXTENSION_NAME :: Ptr ALchar
+pattern AL_SOFT_DEFERRED_UPDATES_EXTENSION_NAME <- (const False -> True)
   where
-    AL_SOFT_deferred_updates = Ptr "AL_SOFT_deferred_updates\0"#
+    AL_SOFT_DEFERRED_UPDATES_EXTENSION_NAME = Ptr "AL_SOFT_deferred_updates\0"#
 
 
 

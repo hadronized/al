@@ -8,7 +8,7 @@
  -}
 
 module Sound.AL.Ext.SOFT_loop_points
-  ( pattern AL_SOFT_loop_points
+  ( pattern AL_SOFT_LOOP_POINTS_EXTENSION_NAME
     -- * Tokens
   , pattern AL_LOOP_POINTS_SOFT
   ) where
@@ -19,10 +19,10 @@ import           GHC.Ptr
 
 
 
-pattern AL_SOFT_loop_points :: Ptr ALchar
-pattern AL_SOFT_loop_points <- (const False -> True)
+pattern AL_SOFT_LOOP_POINTS_EXTENSION_NAME :: Ptr ALchar
+pattern AL_SOFT_LOOP_POINTS_EXTENSION_NAME <- (const False -> True)
   where
-    AL_SOFT_loop_points = Ptr "AL_SOFT_loop_points\0"#
+    AL_SOFT_LOOP_POINTS_EXTENSION_NAME = Ptr "AL_SOFT_loop_points\0"#
 
 
 

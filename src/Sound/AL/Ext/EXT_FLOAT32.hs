@@ -6,7 +6,7 @@
  -}
 
 module Sound.AL.Ext.EXT_FLOAT32
-  ( pattern AL_EXT_FLOAT32
+  ( pattern AL_EXT_FLOAT32_EXTENSION_NAME
     -- * Tokens
   , pattern AL_FORMAT_MONO_FLOAT32
   , pattern AL_FORMAT_STEREO_FLOAT32
@@ -18,10 +18,10 @@ import           GHC.Ptr
 
 
 
-pattern AL_EXT_FLOAT32 :: Ptr ALchar
-pattern AL_EXT_FLOAT32 <- (const False -> True)
+pattern AL_EXT_FLOAT32_EXTENSION_NAME :: Ptr ALchar
+pattern AL_EXT_FLOAT32_EXTENSION_NAME <- (const False -> True)
   where
-    AL_EXT_FLOAT32 = Ptr "AL_EXT_FLOAT32\0"#
+    AL_EXT_FLOAT32_EXTENSION_NAME = Ptr "AL_EXT_FLOAT32\0"#
 
 
 

@@ -8,7 +8,7 @@
  -}
 
 module Sound.AL.Ext.SOFT_source_length
-  ( pattern AL_SOFT_source_length
+  ( pattern AL_SOFT_SOURCE_LENGTH_EXTENSION_NAME
     -- * Tokens
   , pattern AL_BYTE_LENGTH_SOFT
   , pattern AL_SAMPLE_LENGTH_SOFT
@@ -23,7 +23,7 @@ import           GHC.Ptr
 
 
 
-pattern AL_SOFT_source_length :: Ptr ALchar
-pattern AL_SOFT_source_length <- (const False -> True)
+pattern AL_SOFT_SOURCE_LENGTH_EXTENSION_NAME :: Ptr ALchar
+pattern AL_SOFT_SOURCE_LENGTH_EXTENSION_NAME <- (const False -> True)
   where
-    AL_SOFT_source_length = Ptr "AL_SOFT_source_length\0"#
+    AL_SOFT_SOURCE_LENGTH_EXTENSION_NAME = Ptr "AL_SOFT_source_length\0"#

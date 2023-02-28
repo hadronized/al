@@ -6,7 +6,7 @@
  -}
 
 module Sound.AL.Ext.EXT_ALAW
-  ( pattern AL_EXT_ALAW
+  ( pattern AL_EXT_ALAW_EXTENSION_NAME
     -- * Tokens
   , pattern AL_FORMAT_MONO_ALAW_EXT
   , pattern AL_FORMAT_STEREO_ALAW_EXT
@@ -18,10 +18,10 @@ import           GHC.Ptr
 
 
 
-pattern AL_EXT_ALAW :: Ptr ALchar
-pattern AL_EXT_ALAW <- (const False -> True)
+pattern AL_EXT_ALAW_EXTENSION_NAME :: Ptr ALchar
+pattern AL_EXT_ALAW_EXTENSION_NAME <- (const False -> True)
   where
-    AL_EXT_ALAW = Ptr "AL_EXT_ALAW\0"#
+    AL_EXT_ALAW_EXTENSION_NAME = Ptr "AL_EXT_ALAW\0"#
 
 
 

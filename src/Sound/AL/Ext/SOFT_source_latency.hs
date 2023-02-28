@@ -8,7 +8,7 @@
  -}
 
 module Sound.AL.Ext.SOFT_source_latency
-  ( pattern AL_SOFT_source_latency
+  ( pattern AL_SOFT_SOURCE_LATENCY_EXTENSION_NAME
     -- * Primitive types
   , ALint64SOFT
   , ALuint64SOFT
@@ -50,10 +50,10 @@ import           GHC.Ptr
 
 
 
-pattern AL_SOFT_source_latency :: Ptr ALchar
-pattern AL_SOFT_source_latency <- (const False -> True)
+pattern AL_SOFT_SOURCE_LATENCY_EXTENSION_NAME :: Ptr ALchar
+pattern AL_SOFT_SOURCE_LATENCY_EXTENSION_NAME <- (const False -> True)
   where
-    AL_SOFT_source_latency = Ptr "AL_SOFT_source_latency\0"#
+    AL_SOFT_SOURCE_LATENCY_EXTENSION_NAME = Ptr "AL_SOFT_source_latency\0"#
 
 
 

@@ -8,7 +8,7 @@
 -}
 
 module Sound.ALC.Ext.SOFT_reopen_device
-  ( pattern ALC_SOFT_reopen_device
+  ( pattern ALC_SOFT_REOPEN_DEVICE_EXTENSION_NAME
     -- * Procedures
   , ALCReopenDeviceSOFT
   , alcFunReopenDeviceSOFT
@@ -20,10 +20,10 @@ import           GHC.Ptr
 
 
 
-pattern ALC_SOFT_reopen_device :: Ptr ALCchar
-pattern ALC_SOFT_reopen_device <- (const False -> True)
+pattern ALC_SOFT_REOPEN_DEVICE_EXTENSION_NAME :: Ptr ALCchar
+pattern ALC_SOFT_REOPEN_DEVICE_EXTENSION_NAME <- (const False -> True)
   where
-    ALC_SOFT_reopen_device = Ptr "ALC_SOFT_reopen_device\0"#
+    ALC_SOFT_REOPEN_DEVICE_EXTENSION_NAME = Ptr "ALC_SOFT_reopen_device\0"#
 
 
 

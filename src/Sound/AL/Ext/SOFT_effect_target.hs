@@ -8,7 +8,7 @@
  -}
 
 module Sound.AL.Ext.SOFT_effect_target
-  ( pattern AL_SOFT_effect_target
+  ( pattern AL_SOFT_EFFECT_TARGET_EXTENSION_NAME
     -- * Tokens
   , pattern AL_EFFECTSLOT_TARGET_SOFT
   ) where
@@ -19,10 +19,10 @@ import           GHC.Ptr
 
 
 
-pattern AL_SOFT_effect_target :: Ptr ALchar
-pattern AL_SOFT_effect_target <- (const False -> True)
+pattern AL_SOFT_EFFECT_TARGET_EXTENSION_NAME :: Ptr ALchar
+pattern AL_SOFT_EFFECT_TARGET_EXTENSION_NAME <- (const False -> True)
   where
-    AL_SOFT_effect_target = Ptr "AL_SOFT_effect_target\0"#
+    AL_SOFT_EFFECT_TARGET_EXTENSION_NAME = Ptr "AL_SOFT_effect_target\0"#
 
 
 

@@ -8,7 +8,7 @@
  -}
 
 module Sound.AL.Ext.SOFT_source_spatialize
-  ( pattern AL_SOFT_source_spatialize
+  ( pattern AL_SOFT_SOURCE_SPATIALIZE_EXTENSION_NAME
     -- * Tokens
   , pattern AL_SOURCE_SPATIALIZE_SOFT
 
@@ -21,10 +21,11 @@ import           GHC.Ptr
 
 
 
-pattern AL_SOFT_source_spatialize :: Ptr ALchar
-pattern AL_SOFT_source_spatialize <- (const False -> True)
+pattern AL_SOFT_SOURCE_SPATIALIZE_EXTENSION_NAME :: Ptr ALchar
+pattern AL_SOFT_SOURCE_SPATIALIZE_EXTENSION_NAME <- (const False -> True)
   where
-    AL_SOFT_source_spatialize = Ptr "AL_SOFT_source_spatialize\0"#
+    AL_SOFT_SOURCE_SPATIALIZE_EXTENSION_NAME = Ptr "AL_SOFT_source_spatialize\0"#
+
 
 
 pattern AL_SOURCE_SPATIALIZE_SOFT :: (Eq a, Num a) => a

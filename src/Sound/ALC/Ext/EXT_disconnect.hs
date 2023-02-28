@@ -8,7 +8,7 @@
 -}
 
 module Sound.ALC.Ext.EXT_disconnect
-  ( pattern ALC_EXT_disconnect
+  ( pattern ALC_EXT_DISCONNECT_EXTENSION_NAME
     -- * Tokens
   , pattern ALC_CONNECTED
   ) where
@@ -19,10 +19,10 @@ import           GHC.Ptr
 
 
 
-pattern ALC_EXT_disconnect :: Ptr ALCchar
-pattern ALC_EXT_disconnect <- (const False -> True)
+pattern ALC_EXT_DISCONNECT_EXTENSION_NAME :: Ptr ALCchar
+pattern ALC_EXT_DISCONNECT_EXTENSION_NAME <- (const False -> True)
   where
-    ALC_EXT_disconnect = Ptr "ALC_EXT_disconnect\0"#
+    ALC_EXT_DISCONNECT_EXTENSION_NAME = Ptr "ALC_EXT_disconnect\0"#
 
 
 

@@ -8,7 +8,7 @@
  -}
 
 module Sound.ALC.Ext.SOFT_output_mode
-  ( pattern ALC_SOFT_output_mode
+  ( pattern ALC_SOFT_OUTPUT_MODE_EXTENSION_NAME
     -- * Tokens
   , pattern ALC_OUTPUT_MODE_SOFT
 
@@ -30,10 +30,10 @@ import           GHC.Ptr
 
 
 
-pattern ALC_SOFT_output_mode :: Ptr ALCchar
-pattern ALC_SOFT_output_mode <- (const False -> True)
+pattern ALC_SOFT_OUTPUT_MODE_EXTENSION_NAME :: Ptr ALCchar
+pattern ALC_SOFT_OUTPUT_MODE_EXTENSION_NAME <- (const False -> True)
   where
-    ALC_SOFT_output_mode = Ptr "ALC_SOFT_output_mode\0"#
+    ALC_SOFT_OUTPUT_MODE_EXTENSION_NAME = Ptr "ALC_SOFT_output_mode\0"#
 
 
 

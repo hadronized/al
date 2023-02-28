@@ -8,7 +8,7 @@
  -}
 
 module Sound.AL.Ext.SOFT_events
-  ( pattern AL_SOFT_events
+  ( pattern AL_SOFT_EVENTS_EXTENSION_NAME
     -- * Types
   , ALEventProcSOFT
     -- * Procedures
@@ -35,10 +35,10 @@ import           GHC.Ptr
 
 
 
-pattern AL_SOFT_events :: Ptr ALchar
-pattern AL_SOFT_events <- (const False -> True)
+pattern AL_SOFT_EVENTS_EXTENSION_NAME :: Ptr ALchar
+pattern AL_SOFT_EVENTS_EXTENSION_NAME <- (const False -> True)
   where
-    AL_SOFT_events = Ptr "AL_SOFT_events\0"#
+    AL_SOFT_EVENTS_EXTENSION_NAME = Ptr "AL_SOFT_events\0"#
 
 
 

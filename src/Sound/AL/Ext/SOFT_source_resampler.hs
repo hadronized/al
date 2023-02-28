@@ -8,7 +8,7 @@
  -}
 
 module Sound.AL.Ext.SOFT_source_resampler
-  ( pattern AL_SOFT_source_resampler
+  ( pattern AL_SOFT_SOURCE_RESAMPLER_EXTENSION_NAME
     -- * Procedures
   , ALGetStringiSOFT
   , alFunGetStringiSOFT
@@ -27,10 +27,10 @@ import           GHC.Ptr
 
 
 
-pattern AL_SOFT_source_resampler :: Ptr ALchar
-pattern AL_SOFT_source_resampler <- (const False -> True)
+pattern AL_SOFT_SOURCE_RESAMPLER_EXTENSION_NAME :: Ptr ALchar
+pattern AL_SOFT_SOURCE_RESAMPLER_EXTENSION_NAME <- (const False -> True)
   where
-    AL_SOFT_source_resampler = Ptr "AL_SOFT_source_resampler\0"#
+    AL_SOFT_SOURCE_RESAMPLER_EXTENSION_NAME = Ptr "AL_SOFT_source_resampler\0"#
 
 
 

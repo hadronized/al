@@ -32,7 +32,7 @@
  -}
 
 module Sound.AL.Ext.EXT_MCFORMATS
-  ( pattern AL_EXT_MCFORMATS
+  ( pattern AL_EXT_MCFORMATS_EXTENSION_NAME
     -- * Tokens
   , pattern AL_FORMAT_QUAD8
   , pattern AL_FORMAT_QUAD16
@@ -57,10 +57,10 @@ import           GHC.Ptr
 
 
 
-pattern AL_EXT_MCFORMATS :: Ptr ALchar
-pattern AL_EXT_MCFORMATS <- (const False -> True)
+pattern AL_EXT_MCFORMATS_EXTENSION_NAME :: Ptr ALchar
+pattern AL_EXT_MCFORMATS_EXTENSION_NAME <- (const False -> True)
   where
-    AL_EXT_MCFORMATS = Ptr "AL_EXT_MCFORMATS\0"#
+    AL_EXT_MCFORMATS_EXTENSION_NAME = Ptr "AL_EXT_MCFORMATS\0"#
 
 
 

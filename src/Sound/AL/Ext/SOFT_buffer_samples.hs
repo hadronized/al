@@ -8,7 +8,7 @@
  -}
 
 module Sound.AL.Ext.SOFT_buffer_samples
-  ( pattern AL_SOFT_buffer_samples
+  ( pattern AL_SOFT_BUFFER_SAMPLES_EXTENSION_NAME
     -- * Procedures
   , ALBufferSamplesSOFT
   , alFunBufferSamplesSOFT
@@ -76,10 +76,10 @@ import           GHC.Ptr
 
 
 
-pattern AL_SOFT_buffer_samples :: Ptr ALchar
-pattern AL_SOFT_buffer_samples <- (const False -> True)
+pattern AL_SOFT_BUFFER_SAMPLES_EXTENSION_NAME :: Ptr ALchar
+pattern AL_SOFT_BUFFER_SAMPLES_EXTENSION_NAME <- (const False -> True)
   where
-    AL_SOFT_buffer_samples = Ptr "AL_SOFT_buffer_samples\0"#
+    AL_SOFT_BUFFER_SAMPLES_EXTENSION_NAME = Ptr "AL_SOFT_buffer_samples\0"#
 
 
 

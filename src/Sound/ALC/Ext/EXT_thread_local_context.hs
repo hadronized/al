@@ -8,7 +8,7 @@
 -}
 
 module Sound.ALC.Ext.EXT_thread_local_context
-  ( pattern ALC_EXT_thread_local_context
+  ( pattern ALC_EXT_THREAD_LOCAL_CONTEXT_EXTENSION_NAME
     -- * Procedures
   , ALCSetThreadContext
   , alcFunSetThreadContext
@@ -22,10 +22,10 @@ import           GHC.Ptr
 
 
 
-pattern ALC_EXT_thread_local_context :: Ptr ALCchar
-pattern ALC_EXT_thread_local_context <- (const False -> True)
+pattern ALC_EXT_THREAD_LOCAL_CONTEXT_EXTENSION_NAME :: Ptr ALCchar
+pattern ALC_EXT_THREAD_LOCAL_CONTEXT_EXTENSION_NAME <- (const False -> True)
   where
-    ALC_EXT_thread_local_context = Ptr "ALC_EXT_thread_local_context\0"#
+    ALC_EXT_THREAD_LOCAL_CONTEXT_EXTENSION_NAME = Ptr "ALC_EXT_thread_local_context\0"#
 
 
 

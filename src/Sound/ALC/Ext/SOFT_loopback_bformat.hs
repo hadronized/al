@@ -8,7 +8,7 @@
  -}
 
 module Sound.ALC.Ext.SOFT_loopback_bformat
-  ( pattern ALC_SOFT_loopback_bformat
+  ( pattern ALC_SOFT_LOOPBACK_BFORMAT_EXTENSION_NAME
     -- * Tokens
   , pattern ALC_BFORMAT3D_SOFT
 
@@ -31,10 +31,10 @@ import           GHC.Ptr
 
 
 
-pattern ALC_SOFT_loopback_bformat :: Ptr ALCchar
-pattern ALC_SOFT_loopback_bformat <- (const False -> True)
+pattern ALC_SOFT_LOOPBACK_BFORMAT_EXTENSION_NAME :: Ptr ALCchar
+pattern ALC_SOFT_LOOPBACK_BFORMAT_EXTENSION_NAME <- (const False -> True)
   where
-    ALC_SOFT_loopback_bformat = Ptr "ALC_SOFT_loopback_bformat\0"#
+    ALC_SOFT_LOOPBACK_BFORMAT_EXTENSION_NAME = Ptr "ALC_SOFT_loopback_bformat\0"#
 
 
 

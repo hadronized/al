@@ -8,7 +8,7 @@
 -}
 
 module Sound.ALC.Ext.SOFT_device_clock
-  ( pattern ALC_SOFT_device_clock
+  ( pattern ALC_SOFT_DEVICE_CLOCK_EXTENSION_NAME
     -- * Primitive types
   , ALCint64SOFT
   , ALCuint64SOFT
@@ -31,10 +31,10 @@ import           GHC.Ptr
 
 
 
-pattern ALC_SOFT_device_clock :: Ptr ALCchar
-pattern ALC_SOFT_device_clock <- (const False -> True)
+pattern ALC_SOFT_DEVICE_CLOCK_EXTENSION_NAME :: Ptr ALCchar
+pattern ALC_SOFT_DEVICE_CLOCK_EXTENSION_NAME <- (const False -> True)
   where
-    ALC_SOFT_device_clock = Ptr "ALC_SOFT_device_clock\0"#
+    ALC_SOFT_DEVICE_CLOCK_EXTENSION_NAME = Ptr "ALC_SOFT_device_clock\0"#
 
 
 
