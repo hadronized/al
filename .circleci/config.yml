@@ -179,8 +179,8 @@ jobs:
             packages: .
 
             package al
-              extra-include-dirs: "C:\\Program Files (x86)\\OpenAL 1.1 SDK\\include"
-              extra-lib-dirs: "C:\\Program Files (x86)\\OpenAL 1.1 SDK\\libs\\Win64"
+              extra-include-dirs: "C:\\\\Program Files (x86)\\\\OpenAL 1.1 SDK\\\\include"
+              extra-lib-dirs: "C:\\\\Program Files (x86)\\\\OpenAL 1.1 SDK\\\\libs\\\\Win64"
             EOF
 
             cabal new-build --enable-tests extensions
