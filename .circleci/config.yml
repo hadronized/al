@@ -145,8 +145,8 @@ jobs:
           command: |
             choco install openalsdk
 
-            mkdir /c/Program\ Files\ (x86)\OpenAL\ 1.1\ SDK\include\AL
-            mv /c/Program\ Files\ (x86)\OpenAL\ 1.1\ SDK\include\*.h /c/Program\ Files\ (x86)\OpenAL\ 1.1\ SDK\include\AL
+            mkdir '/c/Program Files (x86)/OpenAL 1.1 SDK/include/AL'
+            mv '/c/Program Files (x86)/OpenAL 1.1 SDK/include/*.h' '/c/Program Files (x86)/OpenAL 1.1 SDK/include/AL'
 
       - run:
           name: Install Cabal and GHC
