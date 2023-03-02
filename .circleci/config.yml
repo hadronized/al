@@ -8,6 +8,11 @@ jobs:
     machine:
       image: ubuntu-2204:current
     resource_class: arm.medium
+    parameters:
+      cabal:
+        type: string
+      ghc:
+        type: string
     steps:
       - checkout
       - run:
@@ -43,7 +48,9 @@ jobs:
       image: ubuntu-2204:current
     resource_class: medium
     parameters:
-      version:
+      cabal:
+        type: string
+      ghc:
         type: string
     steps:
       - checkout
@@ -80,7 +87,9 @@ jobs:
       xcode: 12.5.1
     resource_class: medium
     parameters:
-      resolver:
+      cabal:
+        type: string
+      ghc:
         type: string
     steps:
       - checkout
@@ -187,6 +196,10 @@ workflows:
           name: linux-8.2.2
           cabal: 3.8.1.0
           ghc: 8.2.2
+      - build-linux:
+          name: linux-8.10.7
+          cabal: 3.8.1.0
+          ghc: 8.10.7
       - build-linux:
           name: linux-9.4.4
           cabal: 3.8.1.0
