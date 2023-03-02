@@ -24,13 +24,18 @@ If using Ubuntu the correct OpenAL package is
 
 ## MacOS
 
-Configured against the [openal-soft](https://formulae.brew.sh/formula/openal-soft) Homebrew formula.
-You may need to change the `include-dirs` in `al.cabal` according to what Homebrew suggests.
+[openal-soft](https://formulae.brew.sh/formula/openal-soft) Homebrew formula works.
+
+During installation Homebrew will print out the include directory which has to be
+added to `extra-lib-dirs` for `al` in `cabal.project`.
 
 ## Windows
 
-The package is configured to use the OpenAL v1.1 Core SDK, with the caveat that you should
-move headers from `C:/Program Files (x86)/OpenAL 1.1 SDK/include` to `C:/Program Files (x86)/OpenAL 1.1 SDK/include/AL`.
-
-You can get the Core SDK from the [official website](https://www.openal.org/downloads/)
+Core SDK can be retrieved from the [official website](https://www.openal.org/downloads/)
 or using [Chocolatey](https://community.chocolatey.org/packages/openalsdk).
+
+Headers should be moved from `C:/Program Files (x86)/OpenAL 1.1 SDK/include` to
+`C:/Program Files (x86)/OpenAL 1.1 SDK/include/AL`.
+
+`C:/Program Files (x86)/OpenAL 1.1 SDK/include` should be added to
+`extra-lib-dirs` for `al` in `cabal.project`.

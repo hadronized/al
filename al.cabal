@@ -47,20 +47,12 @@ library
   else
     cpp-options:       -DCALLCV=capi
 
-  if os(windows)
-    if arch(x86_64)
-      extra-lib-dirs:  "C:\\Program Files (x86)\\OpenAL 1.1 SDK\\libs\\Win64"
-    else
-      extra-lib-dirs:  "C:\\Program Files (x86)\\OpenAL 1.1 SDK\\libs\\Win32"
-
-    include-dirs:      "C:\\Program Files (x86)\\OpenAL 1.1 SDK\\include"
+  if os (linux)
+    pkgconfig-depends: openal
+  elif os (darwin)
+    frameworks:        OpenAL
+  elif os (windows)
     extra-libraries:   OpenAL32
-  else
-    if os(darwin)
-      frameworks: OpenAL
-      include-dirs: "/usr/local/opt/openal-soft/include"
-    else
-      pkgconfig-depends: openal
 
   build-tool-depends:  hsc2hs:hsc2hs
 

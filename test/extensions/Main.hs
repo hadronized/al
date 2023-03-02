@@ -157,7 +157,7 @@ main =
     alcExts <- alcExtensions dev
     putStrLn $ "\nSupported ALC extensions: " <> show alcExts <> "\n"
 
-    alcValidate dev ALC_EXT_disconnect []
+    alcValidate dev ALC_EXT_DISCONNECT_EXTENSION_NAME []
 
     efxValidate dev ALC_EXT_EFX_NAME
       [ unal alFunGenEffects
@@ -197,113 +197,113 @@ main =
       , unal alFunGetAuxiliaryEffectSlotfv
       ]
 
-    alcValidate dev ALC_EXT_thread_local_context
+    alcValidate dev ALC_EXT_THREAD_LOCAL_CONTEXT_EXTENSION_NAME
       [ unalc alcFunSetThreadContext
       , unalc alcFunGetThreadContext
       ]
 
-    alcValidate dev ALC_SOFT_device_clock
+    alcValidate dev ALC_SOFT_DEVICE_CLOCK_EXTENSION_NAME
       [ unalc alcFunGetInteger64vSOFT
       ]
 
-    alcValidate dev ALC_SOFT_HRTF
+    alcValidate dev ALC_SOFT_HRTF_EXTENSION_NAME
       [ unalc alcFunGetStringiSOFT
       , unalc alcFunResetDeviceSOFT
       ]
 
-    alcValidate dev ALC_SOFT_loopback
+    alcValidate dev ALC_SOFT_LOOPBACK_EXTENSION_NAME
       [ unalc alcFunLoopbackOpenDeviceSOFT
       , unalc alcFunIsRenderFormatSupportedSOFT
       , unalc alcFunRenderSamplesSOFT
       ]
 
-    alcValidate dev ALC_SOFT_loopback_bformat []
+    alcValidate dev ALC_SOFT_LOOPBACK_BFORMAT_EXTENSION_NAME []
 
-    alcValidate dev ALC_SOFT_output_limiter
+    alcValidate dev ALC_SOFT_OUTPUT_LIMITER_EXTENSION_NAME
       [ unalc alcFunResetDeviceSOFT
       ]
 
-    alcValidate dev ALC_SOFT_output_mode []
+    alcValidate dev ALC_SOFT_OUTPUT_MODE_EXTENSION_NAME []
 
-    alcValidate dev ALC_SOFT_pause_device
+    alcValidate dev ALC_SOFT_PAUSE_DEVICE_EXTENSION_NAME
       [ unalc alcFunDevicePauseSOFT
       , unalc alcFunDeviceResumeSOFT
       ]
 
-    alcValidate dev ALC_SOFT_reopen_device
+    alcValidate dev ALC_SOFT_REOPEN_DEVICE_EXTENSION_NAME
       [ unalc alcFunReopenDeviceSOFT
       ]
 
     alExts <- alExtensions
     putStrLn $ "\nSupported AL extensions: " <> show alExts <> "\n"
 
-    alValidate AL_EXT_ALAW []
+    alValidate AL_EXT_ALAW_EXTENSION_NAME []
 
-    alValidate AL_EXT_BFORMAT []
+    alValidate AL_EXT_BFORMAT_EXTENSION_NAME []
 
-    alValidate AL_EXT_DOUBLE []
+    alValidate AL_EXT_DOUBLE_EXTENSION_NAME []
 
-    alValidate AL_EXT_FLOAT32 []
+    alValidate AL_EXT_FLOAT32_EXTENSION_NAME []
 
-    alValidate AL_EXT_IMA4 []
+    alValidate AL_EXT_IMA4_EXTENSION_NAME []
 
-    alValidate AL_EXT_MCFORMATS []
+    alValidate AL_EXT_MCFORMATS_EXTENSION_NAME []
 
-    alValidate AL_EXT_MULAW_BFORMAT []
+    alValidate AL_EXT_MULAW_BFORMAT_EXTENSION_NAME []
 
-    alValidate AL_EXT_MULAW []
+    alValidate AL_EXT_MULAW_EXTENSION_NAME []
 
-    alValidate AL_EXT_MULAW_MCFORMATS []
+    alValidate AL_EXT_MULAW_MCFORMATS_EXTENSION_NAME []
 
-    alValidate AL_EXT_source_distance_model []
+    alValidate AL_EXT_SOURCE_DISTANCE_MODEL_EXTENSION_NAME []
 
-    alValidate AL_SOFT_bformat_ex []
+    alValidate AL_SOFT_BFORMAT_EX_EXTENSION_NAME []
 
-    alValidate AL_SOFT_block_alignment []
+    alValidate AL_SOFT_BLOCK_ALIGNMENT_EXTENSION_NAME []
 
-    alValidate AL_SOFT_buffer_samples
+    alValidate AL_SOFT_BUFFER_SAMPLES_EXTENSION_NAME
       [ unal alFunBufferSamplesSOFT
       , unal alFunBufferSubSamplesSOFT
       , unal alFunGetBufferSamplesSOFT
       , unal alFunIsBufferFormatSupportedSOFT
       ]
 
-    alValidate AL_SOFT_buffer_sub_data
+    alValidate AL_SOFT_BUFFER_SUB_DATA_EXTENSION_NAME
       [ unal alFunBufferSubDataSOFT
       ]
 
-    alValidate AL_SOFT_callback_buffer
+    alValidate AL_SOFT_CALLBACK_BUFFER_EXTENSION_NAME
       [ unal alFunBufferCallbackSOFT
       , unal alFunGetBufferPtrSOFT
       , unal alFunGetBuffer3PtrSOFT
       , unal alFunGetBufferPtrvSOFT
       ]
 
-    alValidate AL_SOFT_deferred_updates
+    alValidate AL_SOFT_DEFERRED_UPDATES_EXTENSION_NAME
       [ unal alFunDeferUpdatesSOFT
       , unal alFunProcessUpdatesSOFT
       ]
 
-    alValidate AL_SOFT_direct_channels []
+    alValidate AL_SOFT_DIRECT_CHANNELS_EXTENSION_NAME []
 
-    alValidate AL_SOFT_direct_channels_remix []
+    alValidate AL_SOFT_DIRECT_CHANNELS_REMIX_EXTENSION_NAME []
 
-    alValidate AL_SOFT_effect_target []
+    alValidate AL_SOFT_EFFECT_TARGET_EXTENSION_NAME []
 
-    alValidate AL_SOFT_events
+    alValidate AL_SOFT_EVENTS_EXTENSION_NAME
       [ unal alFunEventControlSOFT
       , unal alFunEventCallbackSOFT
       , unal alFunGetPointerSOFT
       , unal alFunGetPointervSOFT
       ]
 
-    alValidate AL_SOFT_gain_clamp_ex []
+    alValidate AL_SOFT_GAIN_CLAMP_EX_EXTENSION_NAME []
 
-    alValidate AL_SOFT_loop_points []
+    alValidate AL_SOFT_LOOP_POINTS_EXTENSION_NAME []
 
-    alValidate AL_SOFT_MSADPCM []
+    alValidate AL_SOFT_MSADPCM_EXTENSION_NAME []
 
-    alValidate AL_SOFT_source_latency
+    alValidate AL_SOFT_SOURCE_LATENCY_EXTENSION_NAME
       [ unal alFunSourcedSOFT
       , unal alFunSource3dSOFT
       , unal alFunSourcedvSOFT
@@ -318,17 +318,17 @@ main =
       , unal alFunGetSourcei64vSOFT
       ]
 
-    alValidate AL_SOFT_source_length []
+    alValidate AL_SOFT_SOURCE_LENGTH_EXTENSION_NAME []
 
-    alValidate AL_SOFT_source_resampler
+    alValidate AL_SOFT_SOURCE_RESAMPLER_EXTENSION_NAME
       [ unal alFunGetStringiSOFT
       ]
 
-    alValidate AL_SOFT_source_spatialize []
+    alValidate AL_SOFT_SOURCE_SPATIALIZE_EXTENSION_NAME []
 
-    alValidate AL_SOFT_UHJ []
+    alValidate AL_SOFT_UHJ_EXTENSION_NAME []
 
-    alValidate AL_SOFTX_map_buffer
+    alValidate AL_SOFTX_MAP_BUFFER_EXTENSION_NAME
       [ unal alFunBufferStorageSOFT
       , unal alFunMapBufferSOFT
       , unal alFunUnmapBufferSOFT

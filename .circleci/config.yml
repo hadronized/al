@@ -6,70 +6,74 @@ orbs:
 jobs:
   build-arm64:
     machine:
-      image: ubuntu-2004:current
+      image: ubuntu-2204:current
     resource_class: arm.medium
     steps:
       - checkout
-      - restore_cache:
-          name: Restore
-          key: arm64-{{ checksum "al.cabal" }}
       - run:
-          name: Install GHC
+          name: Install OpenAL
           command: |
-            sudo apt-get install ghc cabal-install libopenal-dev
+            sudo apt-get update
+            sudo apt-get install libopenal-dev
 
-            # Fix for Cabal-2.4.0.0 not initializing the package DB automatically
-            if [ ! -d ~/.cabal/store/ghc-8.6.5 ]; then
-              mkdir -p ~/.cabal/store/ghc-8.6.5;
-              ghc-pkg init ~/.cabal/store/ghc-8.6.5/package.db;
-            else
-              echo 'Package directory already present';
-            fi
+      - run:
+          name: Install Cabal and GHC
+          command: |
+            curl --proto '=https' --tlsv1.2 -sSf https://get-ghcup.haskell.org | BOOTSTRAP_HASKELL_NONINTERACTIVE=1 BOOTSTRAP_HASKELL_MINIMAL=1 sh
+
+            PATH=$HOME/.ghcup/bin:$PATH
+            echo 'export PATH=$HOME/.ghcup/bin:$PATH' >> $BASH_ENV
+
+            ghcup install cabal << parameters.cabal >>
+            ghcup set cabal << parameters.cabal >>
+
+            ghcup install ghc << parameters.ghc >>
+            ghcup set ghc << parameters.ghc >>
+
       - run:
           name: Update Dependencies
           command: cabal new-update
 
       - run:
           name: Build
-          command: cabal new-build
-      - save_cache:
-          name: Cache
-          key: arm64-{{ checksum "al.cabal" }}
-          paths:
-            - "/root/.cabal"
-            - "dist-newstyle"
+          command: cabal new-test extensions
 
   build-linux:
     machine:
-      image: ubuntu-2004:current
+      image: ubuntu-2204:current
     resource_class: medium
     parameters:
       version:
         type: string
     steps:
       - checkout
-      - restore_cache:
-          name: Restore
-          key: linux-<< parameters.version >>-{{ checksum "al.cabal" }}
       - run:
-          name: Install GHC
+          name: Install OpenAL
           command: |
-            sudo add-apt-repository ppa:hvr/ghc
-            sudo apt-get install ghc-<< parameters.version >> cabal-install-3.4 libopenal-dev
-            echo 'export PATH=/opt/ghc/bin:$PATH' >> $BASH_ENV
+            sudo apt-get update
+            sudo apt-get install libopenal-dev
+
+      - run:
+          name: Install Cabal and GHC
+          command: |
+            curl --proto '=https' --tlsv1.2 -sSf https://get-ghcup.haskell.org | BOOTSTRAP_HASKELL_NONINTERACTIVE=1 BOOTSTRAP_HASKELL_MINIMAL=1 sh
+
+            PATH=$HOME/.ghcup/bin:$PATH
+            echo 'export PATH=$HOME/.ghcup/bin:$PATH' >> $BASH_ENV
+
+            ghcup install cabal << parameters.cabal >>
+            ghcup set cabal << parameters.cabal >>
+
+            ghcup install ghc << parameters.ghc >>
+            ghcup set ghc << parameters.ghc >>
 
       - run:
           name: Update Dependencies
           command: cabal new-update
+
       - run:
           name: Build
-          command: cabal new-build --enable-documentation
-      - save_cache:
-          name: Cache
-          key: linux-<< parameters.version >>-{{ checksum "al.cabal" }}
-          paths:
-            - "/root/.cabal"
-            - "dist-newstyle"
+          command: cabal new-test extensions
 
   build-macos:
     macos:
@@ -80,26 +84,42 @@ jobs:
         type: string
     steps:
       - checkout
-      - restore_cache:
-          name: Restore
-          key: macos-<< parameters.resolver >>-{{ checksum "al.cabal" }}
       - run:
-          name: Install Stack
+          name: Install OpenAL
           command: |
+            brew update
             brew install openal-soft
-            curl -sSL https://get.haskellstack.org/ | sh
+
+      - run:
+          name: Install Cabal and GHC
+          command: |
+            curl --proto '=https' --tlsv1.2 -sSf https://get-ghcup.haskell.org | BOOTSTRAP_HASKELL_NONINTERACTIVE=1 BOOTSTRAP_HASKELL_MINIMAL=1 sh
+
+            PATH=$HOME/.ghcup/bin:$PATH
+            echo 'export PATH=$HOME/.ghcup/bin:$PATH' >> $BASH_ENV
+
+            ghcup install cabal << parameters.cabal >>
+            ghcup set cabal << parameters.cabal >>
+
+            ghcup install ghc << parameters.ghc >>
+            ghcup set ghc << parameters.ghc >>
+
+      - run:
+          name: Update Dependencies
+          command: |
+            cabal new-update
 
       - run:
           name: Build
           command: |
-            stack init --resolver << parameters.resolver >> --omit-packages
-            stack build --no-terminal
-      - save_cache:
-          name: Cache
-          key: macos-<< parameters.resolver >>-{{ checksum "al.cabal" }}
-          paths:
-            - "$HOME/.stack"
-            - ".stack-work"
+            cat \<< EOF > cabal.project
+            packages: .
+
+            package al
+              extra-include-dirs: /usr/local/opt/openal-soft/include
+            EOF
+
+            cabal new-test extensions
 
   build-windows:
     executor: win/default
@@ -108,38 +128,51 @@ jobs:
         type: string
     steps:
       - checkout
-      - restore_cache:
-          name: Restore
-          key: windows--<< parameters.resolver >>-{{ checksum "al.cabal" }}
       - run:
-          name: Install Stack
+          name: Install OpenAL
           shell: bash.exe
           command: |
-            choco install openalsdk
-            mkdir "C:/Program Files (x86)/OpenAL 1.1 SDK/include/AL"
-            mv "C:/Program Files (x86)/OpenAL 1.1 SDK/include/al.h" "C:/Program Files (x86)/OpenAL 1.1 SDK/include/AL/al.h"
-            mv "C:/Program Files (x86)/OpenAL 1.1 SDK/include/alc.h" "C:/Program Files (x86)/OpenAL 1.1 SDK/include/AL/alc.h"
-            mkdir stack-build
-            cd stack-build
-            curl -LO --no-progress-meter https://get.haskellstack.org/stable/windows-x86_64.zip
-            unzip windows-x86_64.zip
-            mkdir -pv "$APPDATA/local/bin"
-            mv -v stack.exe "$APPDATA/local/bin"
-            cd ..
-            echo 'export PATH=$APPDATA/local/bin:$PATH' >> $BASH_ENV
+            curl -L https://www.openal.org/downloads/OpenAL11CoreSDK.zip -o $TEMP/sdk.zip
+            unzip $TEMP/sdk.zip -d $TEMP
+            $TEMP/OpenAL11CoreSDK.exe
+
+            mkdir /c/Program\ Files \(x86)\OpenAL\ 1.1\ SDK\include\AL
+            mv /c/Program\ Files \(x86)\OpenAL\ 1.1\ SDK\include\*.h /c/Program\ Files \(x86)\OpenAL\ 1.1\ SDK\include\AL
+
+      - run:
+          name: Install Cabal and GHC
+          shell: bash.exe
+          command: |
+            curl --proto '=https' --tlsv1.2 -sSf https://get-ghcup.haskell.org | BOOTSTRAP_HASKELL_NONINTERACTIVE=1 BOOTSTRAP_HASKELL_MINIMAL=1 sh
+
+            PATH=/C/ghcup/bin:$PATH
+
+            ghcup install cabal << parameters.cabal >>
+            ghcup set cabal << parameters.cabal >>
+
+            ghcup install ghc << parameters.ghc >>
+            ghcup set ghc << parameters.ghc >>
+
+            echo 'export PATH=/C/ghcup/bin:$PATH' >> $BASH_ENV
+
+      - run:
+          name: Update Dependencies
+          shell: bash.exe
+          command: |
+            cabal new-update
 
       - run:
           name: Build
           shell: bash.exe
           command: |
-            stack init --resolver << parameters.resolver >> --omit-packages
-            stack build --no-terminal
-      - save_cache:
-          name: Cache
-          key: windows-<< parameters.resolver >>-{{ checksum "al.cabal" }}
-          paths:
-            - "$APPDATA/stack"
-            - ".stack-work"
+            cat \<< EOF > cabal.project
+            packages: .
+
+            package al
+              extra-include-dirs: C:\Program Files (x86)\OpenAL 1.1 SDK\include
+            EOF
+
+            cabal new-test extensions
 
 
 
@@ -148,27 +181,21 @@ workflows:
     jobs:
       - build-arm64:
           name: aarch64-8.6.5
+          cabal: 3.8.1.0
+          ghc: 9.4.4
       - build-linux:
           name: linux-8.2.2
-          version: 8.2.2
+          cabal: 3.8.1.0
+          ghc: 8.2.2
       - build-linux:
-          name: linux-8.4.4
-          version: 8.4.4
-      - build-linux:
-          name: linux-8.6.5
-          version: 8.6.5
-      - build-linux:
-          name: linux-8.8.4
-          version: 8.8.4
-      - build-linux:
-          name: linux-8.10.4
-          version: 8.10.4
-      - build-linux:
-          name: linux-9.0.1
-          version: 9.0.1
+          name: linux-9.4.4
+          cabal: 3.8.1.0
+          ghc: 9.4.4
       - build-macos:
-          name: macos-lts-19.7
-          resolver: lts-19.7
+          name: macos-9.4.4
+          cabal: 3.8.1.0
+          ghc: 9.4.4
       - build-windows:
-          name: windows-lts-19.7
-          resolver: lts-19.7
+          name: windows-9.4.4
+          cabal: 3.8.1.0
+          ghc: 9.4.4
