@@ -145,8 +145,8 @@ jobs:
           command: |
             choco install openalsdk
 
-            mkdir /c/Program\ Files \(x86)\OpenAL\ 1.1\ SDK\include\AL
-            mv /c/Program\ Files \(x86)\OpenAL\ 1.1\ SDK\include\*.h /c/Program\ Files \(x86)\OpenAL\ 1.1\ SDK\include\AL
+            mkdir /c/Program\ Files\ (x86)\OpenAL\ 1.1\ SDK\include\AL
+            mv /c/Program\ Files\ (x86)\OpenAL\ 1.1\ SDK\include\*.h /c/Program\ Files\ (x86)\OpenAL\ 1.1\ SDK\include\AL
 
       - run:
           name: Install Cabal and GHC
@@ -188,26 +188,26 @@ jobs:
 workflows:
   workflow:
     jobs:
-      - build-arm64:
-          name: aarch64-8.6.5
-          cabal: 3.8.1.0
-          ghc: 9.4.4
+#     - build-arm64:
+#         name: aarch64-8.6.5
+#         cabal: 3.8.1.0
+#         ghc: 9.4.4
       - build-linux:
-          name: linux-8.2.2
+          name: linux-8.4.4
           cabal: 3.8.1.0
-          ghc: 8.2.2
-      - build-linux:
-          name: linux-8.10.7
-          cabal: 3.8.1.0
-          ghc: 8.10.7
-      - build-linux:
-          name: linux-9.4.4
-          cabal: 3.8.1.0
-          ghc: 9.4.4
-      - build-macos:
-          name: macos-9.4.4
-          cabal: 3.8.1.0
-          ghc: 9.4.4
+          ghc: 8.4.4
+#     - build-linux:
+#         name: linux-8.10.7
+#         cabal: 3.8.1.0
+#         ghc: 8.10.7
+#     - build-linux:
+#         name: linux-9.4.4
+#         cabal: 3.8.1.0
+#         ghc: 9.4.4
+#     - build-macos:
+#         name: macos-9.4.4
+#         cabal: 3.8.1.0
+#         ghc: 9.4.4
       - build-windows:
           name: windows-9.4.4
           cabal: 3.8.1.0
