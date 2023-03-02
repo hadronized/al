@@ -26,16 +26,17 @@ If using Ubuntu the correct OpenAL package is
 
 [openal-soft](https://formulae.brew.sh/formula/openal-soft) Homebrew formula works.
 
-During installation Homebrew will print out the include directory which has to be
-added to `extra-lib-dirs` for `al` in `cabal.project`.
+During installation Homebrew will print out the include directory which should be
+added to `extra-lib-dirs` in `al` configuration.
 
 ## Windows
 
 Core SDK can be retrieved from the [official website](https://www.openal.org/downloads/)
 or using [Chocolatey](https://community.chocolatey.org/packages/openalsdk).
 
-Headers should be moved from `C:/Program Files (x86)/OpenAL 1.1 SDK/include` to
-`C:/Program Files (x86)/OpenAL 1.1 SDK/include/AL`.
+Headers should be moved from `C:\Program Files (x86)\OpenAL 1.1 SDK\include` to
+`C:\Program Files (x86)\OpenAL 1.1 SDK\include\AL`.
 
-`C:/Program Files (x86)/OpenAL 1.1 SDK/include` should be added to
-`extra-lib-dirs` for `al` in `cabal.project`.
+`al` should be configured to mention
+`C:\Program Files (x86)\OpenAL 1.1 SDK\include` in `extra-include-dirs` and
+`C:\Program Files (x86)\OpenAL 1.1 SDK\lib\Win64` (or `Win32`) in `extra-lib-dirs.
