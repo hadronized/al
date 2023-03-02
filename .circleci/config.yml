@@ -145,9 +145,10 @@ jobs:
           command: |
             choco install openalsdk
 
-            mkdir '/c/Program Files (x86)/OpenAL 1.1 SDK/include/AL'
-            mv '/c/Program Files (x86)/OpenAL 1.1 SDK/include/alc.h' '/c/Program Files (x86)/OpenAL 1.1 SDK/include/AL/alc.h'
-            mv '/c/Program Files (x86)/OpenAL 1.1 SDK/include/al.h' '/c/Program Files (x86)/OpenAL 1.1 SDK/include/AL/al.h'
+            mv '/c/Program Files (x86)/OpenAL 1.1 SDK' /c/OpenALSDK
+            mkdir '/c/OpenALSDK/include/AL'
+            mv '/c/OpenALSDK/include/alc.h' '/c/OpenALSDK/include/AL/alc.h'
+            mv '/c/OpenALSDK/include/al.h' '/c/OpenALSDK/include/AL/al.h'
 
       - run:
           name: Install Cabal and GHC
@@ -179,8 +180,8 @@ jobs:
             packages: .
 
             package al
-              extra-include-dirs: "C:\\\\Program Files (x86)\\\\OpenAL 1.1 SDK\\\\include"
-              extra-lib-dirs: "C:\\\\Program Files (x86)\\\\OpenAL 1.1 SDK\\\\libs\\\\Win64"
+              extra-include-dirs: C:\OpenALSDK\include
+              extra-lib-dirs: C:\OpenALSDK\libs\Win64
             EOF
 
             cabal new-build --enable-tests extensions
