@@ -41,7 +41,7 @@ jobs:
 
       - run:
           name: Build
-          command: cabal new-test extensions
+          command: cabal new-build --enable-tests extensions
 
   build-linux:
     machine:
@@ -80,7 +80,7 @@ jobs:
 
       - run:
           name: Build
-          command: cabal new-test extensions
+          command: cabal new-build --enable-tests extensions
 
   build-macos:
     macos:
@@ -128,7 +128,7 @@ jobs:
               extra-include-dirs: /usr/local/opt/openal-soft/include
             EOF
 
-            cabal new-test extensions
+            cabal new-test --test-show-details=streaming extensions
 
   build-windows:
     executor: win/default
@@ -143,9 +143,7 @@ jobs:
           name: Install OpenAL
           shell: bash.exe
           command: |
-            curl -L https://www.openal.org/downloads/OpenAL11CoreSDK.zip -o $TEMP/sdk.zip
-            unzip $TEMP/sdk.zip -d $TEMP
-            $TEMP/OpenAL11CoreSDK.exe
+            choco install openalsdk
 
             mkdir /c/Program\ Files \(x86)\OpenAL\ 1.1\ SDK\include\AL
             mv /c/Program\ Files \(x86)\OpenAL\ 1.1\ SDK\include\*.h /c/Program\ Files \(x86)\OpenAL\ 1.1\ SDK\include\AL
@@ -183,7 +181,7 @@ jobs:
               extra-include-dirs: C:\Program Files (x86)\OpenAL 1.1 SDK\include
             EOF
 
-            cabal new-test extensions
+            cabal new-test --test-show-details=streaming extensions
 
 
 
