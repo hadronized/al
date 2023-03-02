@@ -1,30 +1,21 @@
+cabal-version:       2.2
+
 name:                al
-version:             0.1.4.2
+version:             0.2.0.0
 synopsis:            OpenAL 1.1 raw API.
 description:         OpenAL is a minimalistic sound API that aims to provide
                      bare features for /spacialized audio/. The API looks like
                      the OpenGL one, thus the libs are pretty great together.
 
-                     Up to now, no OpenAL extension is supported. You're highly
-                     invited to contribute ;).
+                     Check the README for information on building this package.
 
-                     EAX is not supported yet either. It'll be embedded in
-                     future releases, soon.
-
-                     In order to build and install "al", you'll need to have
-                     pkg-config installed.
-
-                     For Ubuntu users, there might be a bug with pkg-config.
-                     If the install fails, consider using @cabal install al
-                     --extra-include-dirs=/usr/include/AL@ or whatever the path
-                     your OpenAL setup is located to – you can help find that
-                     with @find / -name al.h@.
-
-license:             BSD3
+license:             BSD-3-Clause
 license-file:        LICENSE
 author:              Dimitri Sabadie <dimitri.sabadie@gmail.com>
+                     Oleksii Divak <frozenwitness@gmail.com>
 maintainer:          Dimitri Sabadie <dimitri.sabadie@gmail.com>
 copyright:           Dimitri Sabadie
+                     Oleksii Divak
 homepage:            http://github.com/phaazon/al
 bug-reports:         http://github.com/phaazon/al/issues
 
@@ -34,67 +25,96 @@ stability:           experimental
 
 extra-source-files:  CHANGELOG.md
 
-cabal-version:       >= 1.10
-
 source-repository head
   type:     git
   location: git://github.com/phaazon/al.git
 
-flag stdcall {
-  description: Use the stdcall call convention
+flag ccall
+  description: Use the ccall call convention.
   default: False
-}
+
+flag stdcall
+  description: Use the stdcall call convention (takes precedence over the ccall flag).
+  default: False
 
 library
-  ghc-options:         -W -Wall -O2
+  ghc-options:         -Wall
 
   if flag(stdcall)
     cpp-options:       -DCALLCV=stdcall
-  else
+  elif flag(ccall)
     cpp-options:       -DCALLCV=ccall
-
-  if os(windows)
-    if arch(x86_64)
-      extra-lib-dirs:  "C:\\Program Files (x86)\\OpenAL 1.1 SDK\\libs\\Win64"
-    else
-      extra-lib-dirs:  "C:\\Program Files (x86)\\OpenAL 1.1 SDK\\libs\\Win32"
-
-    include-dirs:      "C:\\Program Files (x86)\\OpenAL 1.1 SDK\\include"
-    extra-libraries:   OpenAL32
   else
-    if os(darwin)
-      frameworks: OpenAL
-      include-dirs: "/System/Library/Frameworks/OpenAL.framework/Headers/"
-    else
-      pkgconfig-depends: openal
+    cpp-options:       -DCALLCV=capi
 
-  build-tools:         c2hs >= 0.23 && < 0.29
+  if os (linux)
+    pkgconfig-depends: openal
+  elif os (darwin)
+    frameworks:        OpenAL
+  elif os (windows)
+    extra-libraries:   OpenAL32
+
+  build-tool-depends:  hsc2hs:hsc2hs
 
   exposed-modules:     Sound.AL
-                     , Sound.AL.Buffer
-                     , Sound.AL.Defines
-                     , Sound.AL.EAX
-                     , Sound.AL.Errors
-                     , Sound.AL.Extensions
-                     , Sound.AL.Listener
-                     , Sound.AL.Source
-                     , Sound.AL.State
-                     , Sound.AL.Types
-                     , Sound.ALC
-                     , Sound.ALC.Context
-                     , Sound.ALC.Defines
-                     , Sound.ALC.Device
-                     , Sound.ALC.Errors
-                     , Sound.ALC.Extensions
-                     , Sound.ALC.State
-                     , Sound.ALC.Types
+                       Sound.AL.Ext.EXT_ALAW
+                       Sound.AL.Ext.EXT_BFORMAT
+                       Sound.AL.Ext.EXT_DOUBLE
+                       Sound.AL.Ext.EXT_FLOAT32
+                       Sound.AL.Ext.EXT_IMA4
+                       Sound.AL.Ext.EXT_MCFORMATS
+                       Sound.AL.Ext.EXT_MULAW_BFORMAT
+                       Sound.AL.Ext.EXT_MULAW
+                       Sound.AL.Ext.EXT_MULAW_MCFORMATS
+                       Sound.AL.Ext.EXT_source_distance_model
+                       Sound.AL.Ext.SOFT_bformat_ex
+                       Sound.AL.Ext.SOFT_block_alignment
+                       Sound.AL.Ext.SOFT_buffer_samples
+                       Sound.AL.Ext.SOFT_buffer_sub_data
+                       Sound.AL.Ext.SOFT_callback_buffer
+                       Sound.AL.Ext.SOFT_deferred_updates
+                       Sound.AL.Ext.SOFT_direct_channels
+                       Sound.AL.Ext.SOFT_direct_channels_remix
+                       Sound.AL.Ext.SOFT_effect_target
+                       Sound.AL.Ext.SOFT_events
+                       Sound.AL.Ext.SOFT_gain_clamp_ex
+                       Sound.AL.Ext.SOFT_loop_points
+                       Sound.AL.Ext.SOFT_MSADPCM
+                       Sound.AL.Ext.SOFT_source_latency
+                       Sound.AL.Ext.SOFT_source_length
+                       Sound.AL.Ext.SOFT_source_resampler
+                       Sound.AL.Ext.SOFT_source_spatialize
+                       Sound.AL.Ext.SOFT_UHJ
+                       Sound.AL.Ext.SOFTX_map_buffer
 
-  default-extensions:  CPP
-                     , ForeignFunctionInterface
+                       Sound.ALC
+                       Sound.ALC.Ext.EXT_disconnect
+                       Sound.ALC.Ext.EXT_EFX
+                       Sound.ALC.Ext.EXT_thread_local_context
+                       Sound.ALC.Ext.SOFT_device_clock
+                       Sound.ALC.Ext.SOFT_HRTF
+                       Sound.ALC.Ext.SOFT_loopback_bformat
+                       Sound.ALC.Ext.SOFT_loopback
+                       Sound.ALC.Ext.SOFT_output_limiter
+                       Sound.ALC.Ext.SOFT_output_mode
+                       Sound.ALC.Ext.SOFT_pause_device
+                       Sound.ALC.Ext.SOFT_reopen_device
 
-  build-depends:       base >= 4.6 && < 5
-                     , mtl  >= 2.1 && < 2.3
+  build-depends:       base >= 4.10 && < 5
 
   hs-source-dirs:      src
+
+  default-language:    Haskell2010
+
+test-suite extensions
+  type:                exitcode-stdio-1.0
+
+  hs-source-dirs:      test/extensions
+  main-is:             Main.hs
+
+  build-depends:       al
+                     , base > 4 && < 5
+
+  ghc-options:         -Wall
 
   default-language:    Haskell2010

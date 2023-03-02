@@ -1,0 +1,217 @@
+version: 2.1
+
+orbs:
+  win: circleci/windows@2.2.0
+
+jobs:
+  build-arm64:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: arm.medium
+    parameters:
+      cabal:
+        type: string
+      ghc:
+        type: string
+    steps:
+      - checkout
+      - run:
+          name: Install OpenAL
+          command: |
+            sudo apt-get update
+            sudo apt-get install libopenal-dev
+
+      - run:
+          name: Install Cabal and GHC
+          command: |
+            curl --proto '=https' --tlsv1.2 -sSf https://get-ghcup.haskell.org | BOOTSTRAP_HASKELL_NONINTERACTIVE=1 BOOTSTRAP_HASKELL_MINIMAL=1 sh
+
+            PATH=$HOME/.ghcup/bin:$PATH
+            echo 'export PATH=$HOME/.ghcup/bin:$PATH' >> $BASH_ENV
+
+            ghcup install cabal << parameters.cabal >>
+            ghcup set cabal << parameters.cabal >>
+
+            ghcup install ghc << parameters.ghc >>
+            ghcup set ghc << parameters.ghc >>
+
+      - run:
+          name: Update Dependencies
+          command: cabal new-update
+
+      - run:
+          name: Build
+          command: cabal new-build --enable-tests extensions
+
+  build-linux:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: medium
+    parameters:
+      cabal:
+        type: string
+      ghc:
+        type: string
+    steps:
+      - checkout
+      - run:
+          name: Install OpenAL
+          command: |
+            sudo apt-get update
+            sudo apt-get install libopenal-dev
+
+      - run:
+          name: Install Cabal and GHC
+          command: |
+            curl --proto '=https' --tlsv1.2 -sSf https://get-ghcup.haskell.org | BOOTSTRAP_HASKELL_NONINTERACTIVE=1 BOOTSTRAP_HASKELL_MINIMAL=1 sh
+
+            PATH=$HOME/.ghcup/bin:$PATH
+            echo 'export PATH=$HOME/.ghcup/bin:$PATH' >> $BASH_ENV
+
+            ghcup install cabal << parameters.cabal >>
+            ghcup set cabal << parameters.cabal >>
+
+            ghcup install ghc << parameters.ghc >>
+            ghcup set ghc << parameters.ghc >>
+
+      - run:
+          name: Update Dependencies
+          command: cabal new-update
+
+      - run:
+          name: Build
+          command: cabal new-build --enable-tests extensions
+
+  build-macos:
+    macos:
+      xcode: 12.5.1
+    resource_class: medium
+    parameters:
+      cabal:
+        type: string
+      ghc:
+        type: string
+    steps:
+      - checkout
+      - run:
+          name: Install OpenAL
+          command: |
+            brew update
+            brew install openal-soft
+
+      - run:
+          name: Install Cabal and GHC
+          command: |
+            curl --proto '=https' --tlsv1.2 -sSf https://get-ghcup.haskell.org | BOOTSTRAP_HASKELL_NONINTERACTIVE=1 BOOTSTRAP_HASKELL_MINIMAL=1 sh
+
+            PATH=$HOME/.ghcup/bin:$PATH
+            echo 'export PATH=$HOME/.ghcup/bin:$PATH' >> $BASH_ENV
+
+            ghcup install cabal << parameters.cabal >>
+            ghcup set cabal << parameters.cabal >>
+
+            ghcup install ghc << parameters.ghc >>
+            ghcup set ghc << parameters.ghc >>
+
+      - run:
+          name: Update Dependencies
+          command: |
+            cabal new-update
+
+      - run:
+          name: Build
+          command: |
+            cat \<< EOF > cabal.project
+            packages: .
+
+            package al
+              extra-include-dirs: /usr/local/opt/openal-soft/include
+            EOF
+
+            cabal new-test --test-show-details=streaming extensions
+
+  build-windows:
+    executor: win/default
+    parameters:
+      cabal:
+        type: string
+      ghc:
+        type: string
+    steps:
+      - checkout
+      - run:
+          name: Install OpenAL
+          shell: bash.exe
+          command: |
+            choco install openalsdk
+
+            mv '/c/Program Files (x86)/OpenAL 1.1 SDK' /c/OpenALSDK
+            mkdir '/c/OpenALSDK/include/AL'
+            mv '/c/OpenALSDK/include/alc.h' '/c/OpenALSDK/include/AL/alc.h'
+            mv '/c/OpenALSDK/include/al.h' '/c/OpenALSDK/include/AL/al.h'
+
+      - run:
+          name: Install Cabal and GHC
+          shell: bash.exe
+          command: |
+            curl --proto '=https' --tlsv1.2 -sSf https://get-ghcup.haskell.org | BOOTSTRAP_HASKELL_NONINTERACTIVE=1 BOOTSTRAP_HASKELL_MINIMAL=1 sh
+
+            PATH=/C/ghcup/bin:$PATH
+
+            ghcup install cabal << parameters.cabal >>
+            ghcup set cabal << parameters.cabal >>
+
+            ghcup install ghc << parameters.ghc >>
+            ghcup set ghc << parameters.ghc >>
+
+            echo 'export PATH=/C/ghcup/bin:$PATH' >> $BASH_ENV
+
+      - run:
+          name: Update Dependencies
+          shell: bash.exe
+          command: |
+            cabal new-update
+
+      - run:
+          name: Build
+          shell: bash.exe
+          command: |
+            cat \<< EOF > cabal.project
+            packages: .
+
+            package al
+              extra-include-dirs: C:\OpenALSDK\include
+              extra-lib-dirs: C:\OpenALSDK\libs\Win64
+            EOF
+
+            cabal new-build --enable-tests extensions
+
+
+
+workflows:
+  workflow:
+    jobs:
+      - build-arm64:
+          name: aarch64-8.6.5
+          cabal: 3.8.1.0
+          ghc: 9.4.4
+      - build-linux:
+          name: linux-8.4.4
+          cabal: 3.8.1.0
+          ghc: 8.4.4
+      - build-linux:
+          name: linux-8.10.7
+          cabal: 3.8.1.0
+          ghc: 8.10.7
+      - build-linux:
+          name: linux-9.4.4
+          cabal: 3.8.1.0
+          ghc: 9.4.4
+      - build-macos:
+          name: macos-9.4.4
+          cabal: 3.8.1.0
+          ghc: 9.4.4
+      - build-windows:
+          name: windows-9.4.4
+          cabal: 3.8.1.0
+          ghc: 9.4.4

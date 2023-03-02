@@ -1,16 +1,42 @@
 # al
 
-[![Hackage](https://img.shields.io/badge/hackage-0.1.4.1-orange.svg?style=flat)](https://hackage.haskell.org/package/al)
+[![Hackage](https://img.shields.io/badge/hackage-0.2.0.0-orange.svg?style=flat)](https://hackage.haskell.org/package/al)
 
 OpenAL is a minimalistic sound API that aims to provide bare features for *spacialized audio*. The API looks
-like the OpenGL one, thus the libs are pretty great together. Up to now, no OpenAL extension is supported.
-You’re highly invited to contribute.
+like the OpenGL one, thus the libs are pretty great together.
 
-You’ll need `pkg-config` in order to build.
+# Implementation caveats
 
-**For Ubuntu users: there’s a bug in the latest Ubuntu LTS, making the `pkg-config` files for OpenAL broken.
-Consider using the following command to install:**
+Due to the fact that OpenAL uses mutexes under the hood every foreign function import
+is marked as `safe`.
 
-    cabal install al --extra-include-dirs=/usr/include/AL
+`AL_CHANNEL_MASK` is the only enumeration missing from the bindings: it's internal,
+undocumented and was removed during the development of OpenAL Soft.
 
-Or whatever your install path is.
+# Building
+
+## Linux
+
+`pkg-config` is used to discover `openal`.
+
+If using Ubuntu the correct OpenAL package is
+[`libopenal-dev`](https://packages.ubuntu.com/search?keywords=libopenal-dev).
+
+## MacOS
+
+[openal-soft](https://formulae.brew.sh/formula/openal-soft) Homebrew formula works.
+
+During installation Homebrew will print out the include directory which should be
+added to `extra-lib-dirs` in `al` configuration.
+
+## Windows
+
+Core SDK can be retrieved from the [official website](https://www.openal.org/downloads/)
+or using [Chocolatey](https://community.chocolatey.org/packages/openalsdk).
+
+Headers should be moved from `C:\Program Files (x86)\OpenAL 1.1 SDK\include` to
+`C:\Program Files (x86)\OpenAL 1.1 SDK\include\AL`.
+
+`al` should be configured to mention
+`C:\Program Files (x86)\OpenAL 1.1 SDK\include` in `extra-include-dirs` and
+`C:\Program Files (x86)\OpenAL 1.1 SDK\lib\Win64` (or `Win32`) in `extra-lib-dirs.
