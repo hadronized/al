@@ -133,7 +133,9 @@ jobs:
   build-windows:
     executor: win/default
     parameters:
-      resolver:
+      cabal:
+        type: string
+      ghc:
         type: string
     steps:
       - checkout
